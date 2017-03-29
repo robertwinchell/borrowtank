@@ -1,0 +1,5 @@
+﻿
+@model List<ASOL.HireThings.Model.ISelectListItem>
+@Html.DropDownList(Model[0].Identifier, new SelectList(Model, "Value", "Text"),
+new {  @class = "form-control ddlWithOnClick", @data_saved=Model[0].SavedValue })
+

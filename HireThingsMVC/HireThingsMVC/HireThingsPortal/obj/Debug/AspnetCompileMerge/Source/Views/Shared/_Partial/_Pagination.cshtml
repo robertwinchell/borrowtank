@@ -1,0 +1,25 @@
+﻿@model MEPS.MEPSTemp.Model.IPageInfo
+<span class="CustomPagination-TotalRecord">
+
+    <span class="ib pr-sm va-middle">Show Result:</span>
+    <select id="ddlPageSize" class="form-control input-sm ib va-middle" style="width:60px;">
+
+        @{
+            List<MEPS.MEPSTemp.Model.ISelectListItem> list = Session[MEPS.MEPSTemp.Core.Sessions.DDLPageSize] as List<MEPS.MEPSTemp.Model.ISelectListItem>;
+
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        }
+    </select>
+    <span class="ib va-middle">
+        Total
+        @Html.Label(Model.TRows.ToString(), new { @Id = "lblTotalRows" })
+        Records.
+    </span>
+</span>
+<ul id="paginationDiv" class="CustomPagination pagination pagination-sm"></ul>

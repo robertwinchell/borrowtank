@@ -1,0 +1,63 @@
+﻿@model MEPS.MEPSTemp.Model.WorkstationSearchViewModel
+@{
+    ViewBag.Title = "Workstation";
+}
+@using (Html.BeginForm("IndexEdit", "Workstation", FormMethod.Post, new { id = "WorkstationSearch" }))
+{
+    @Html.Hidden("hdnWorkstationId")
+ 
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel CustomSearchBox">
+                    <div class="panel-body">
+                        <div class="">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="control-label">System</label>
+
+                                    @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.DDLSystem)
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Organization</label>
+                                    <div id="DivOrganization">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.DDLOrganization)
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="control-label">Search</label>
+                                    <input type="text" class="form-control" id="txtSearch" onkeypress="return pressEnter(event, workstationSearch())" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Search Field</label>
+                                    @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                    <input type="button" class="btn btn-primary" value="Search" id="btnWorkstationSearch" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="DivWorkstationGrid">
+            @Html.Partial("_WorkstationGrid", Model.WorkstationList)
+        </div>
+
+  
+<script src="~/Scripts/AppJS/workstation/mepstemp.workstation.search.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            MEPSTEMP.UI.Workstation.Search.initialisePage();
+        });
+    </script>
+}
+

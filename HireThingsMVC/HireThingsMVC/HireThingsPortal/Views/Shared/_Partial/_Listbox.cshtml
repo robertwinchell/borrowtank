@@ -1,0 +1,29 @@
+﻿@model ASOL.HireThings.Model.ListBoxSettingsModel
+<div class="listboxDiv">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="col-lg-7 col-lg-offset-3">
+                <div class="col-lg-5 pr-none pl-none">
+                    <label for="AvailableSelected" class="ListingHeading">Available Email Groups:</label>
+                    @Html.ListBoxFor(m => m.AvailableSelected, new MultiSelectList(Model.AvailableListBoxItem, "Value", "Text", Model.AvailableSelected), new { @class = "form-control listBoxAvail"  })
+                </div>
+                <div class="col-lg-2 text-center visible-lg">
+                    <div class="btn-group text-center mt-sm" style="width:35px;">
+                        <button class="btn btn-default btnRemoveRight bd-radius-4 mb-md" type="button"><i class="fa  fa-angle-double-left"></i></button>
+                        <button class="btn btn-default  btnAddRight bd-radius-4" type="button"><i class="fa  fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-2 text-center visible-sm visible-xs visible-md mt-sm mb-sm">
+                    <div class="btn-group text-center" style="width:35px;">
+                        <button class="btn btn-md btn-default btnRemoveRight  bd-radius-4 mb-md" type="button"><i class="fa   fa-angle-double-up"></i></button><br />
+                        <button class="btn btn-md btn-default btnAddRight bd-radius-4" type="button"><i class="fa  fa-angle-double-down"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-5 pr-none pl-none">
+                    <label for="@Model.Identifier" class="ListingHeading">Selected Email Groups:</label>
+                    @Html.ListBox(Model.Identifier, new MultiSelectList(Model.RequestedListBoxItem, "Value", "Text", Model.RequestedSelected), new { @class = "form-control listBoxSel", @id = Model.Identifier })                                                                                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

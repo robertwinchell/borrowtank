@@ -1,0 +1,200 @@
+﻿@model MEPS.MEPSTemp.Model.MEPSTempUser
+@{
+    ViewBag.Title = "User";
+    ViewData[MEPS.MEPSTemp.Core.Constant.HeaderTitle] = "Profile Settings";
+}
+
+@using (Html.BeginForm("ProfileSettings", "User"))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Content Start -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">EDIT Profile Settings</h2>
+                    <!--<div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm"></div>-->
+                </header>
+                <div class="panel-body pt-xlg">
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control", @readonly = "true" })
+                                </div>
+                                <div class="col-lg-2 text-danger">For User Login.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Confirm Email:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ConfirmEmailId, new { @class = "form-control firstTextBox hasKeyLocking", @maxlength = "250", @data_keylocking = "alphanumeric", @readonly = true })
+                                    @Html.ValidationMessageFor(m => m.ConfirmEmailId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">System:</label>
+                                <div class="col-lg-7">
+                                    @Html.HiddenFor(m => m.SystemId)
+                                    @Html.TextBoxFor(m => m.SystemName, new { @class = "form-control", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization:</label>
+                                <div class="col-lg-7">
+                                    @Html.HiddenFor(m => m.OrganizationId)
+                                    @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Role:</label>
+                                <div class="col-lg-7">
+                                    @Html.HiddenFor(m => m.RoleId)
+                                    @Html.TextBoxFor(m => m.RoleName, new { @class = "form-control", @readonly = "true" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">First Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Middle Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", maxlength = "1" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Last Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Gender:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.GenderId, new SelectList(Model.GenderList, "Value", "Text"), new { @id = "ddlGender", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.GenderId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Date of Birth:</label>
+                                <div class="col-lg-7">
+
+                                    <div class='input-group date datepicker'>
+                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Phone:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control hasKeyLocking", @data_keylocking = "numeric" })
+                                    @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Street:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Address1, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">City/State:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Address2, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Country:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Address3, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Address3, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        @Html.HiddenFor(m => m.SecurityQuestionID)
+                        @Html.HiddenFor(m => m.SecurityAnswer)
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Time Zone:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.TimeZoneId, new SelectList(Model.TimeZoneList, "Value", "Text"), new { @id = "ddlTimezone", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TimeZoneId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Is Active:</label>
+                                <div class="col-lg-7 va-bottom ib">@Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="~/Dashboard/Index">Cancel</a>
+                &nbsp;
+                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datetimepicker({
+                minDate: '1900-01-01',
+                maxDate: new Date(),
+                viewMode: 'years',
+                format: 'MM/DD/YYYY'
+            });
+            MEPSTEMP.Global.ApplyMasking('#PhoneNo', 'usphone');
+            MEPSTEMP.Global.KeyLocking('.hasKeyLocking', 'data-keylocking');
+            MEPSTEMP.Global.ApplyMenuSelection('ProfileSettings');
+        });
+    </script>
+        <!-- Content End -->
+}

@@ -1,0 +1,9 @@
+﻿@model List<MEPS.MEPSTemp.Model.ISelectListItem>
+
+@Html.DropDownList("ddlId", new SelectList(Model, "Value", "Text"), new { @id = "ddlListItemId", @class = "form-control" })
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        MEPSTEMP.UI.Device.PopulateDDL();
+    });
+  </script>

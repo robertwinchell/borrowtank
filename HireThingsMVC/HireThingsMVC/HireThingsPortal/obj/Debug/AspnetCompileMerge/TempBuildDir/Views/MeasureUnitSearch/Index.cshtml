@@ -1,0 +1,44 @@
+﻿@model MEPS.MEPSTemp.Model.MeasureUnitSearchViewModel
+@{
+    ViewBag.Title = "Measure Unit";
+}
+
+<!-- Content Start -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel CustomSearchBox">
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label">Search</label>
+                                <input type="text" class="form-control" id="txtSearch" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Search Field</label>
+                                @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                <input type="button" class="btn btn-primary" id="btnMeasureUnitSearch" value="Search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="DivMeasureUnitGrid">
+        @Html.Partial("_MeasureUnitGrid", Model.MeasureUnitList)
+    </div>
+    <script src="~/Scripts/AppJS/MeasureUnit/mepstemp.measureunit.search.js"></script>
+    <script>
+        $(document).ready(function () {
+            MEPSTEMP.UI.MeasureUnit.Search.initialisePage();
+        });
+    </script>
+
+<!-- Content End -->

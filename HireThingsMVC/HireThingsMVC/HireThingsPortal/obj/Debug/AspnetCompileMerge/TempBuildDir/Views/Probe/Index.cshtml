@@ -1,0 +1,189 @@
+﻿@model MEPS.MEPSTemp.Model.ProbeModel
+@{
+    ViewBag.Title = "Probe Type";
+}
+
+    @ViewBag.Saved
+    @using (Ajax.BeginForm("Index", "Probe", new AjaxOptions { }))
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <header class="panel-heading oflo-h mb-lg">
+                        <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                        <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index","ProbeSearch")'"></div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Probe ID:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.ProbeId, new { @class = "form-control CustomReadOnly", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">System:</label>
+                                    <div class="col-lg-7">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.SystemList)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Probe Type:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.ProbeTypeId, new SelectList(Model.ProbeTypeList, "Value", "Text"), new { @id = "ddlProbeType", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ProbeTypeId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Probe Name:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.ProbeName, new { @class = "form-control", @maxlength = "100" })
+                                        @Html.ValidationMessageFor(m => m.ProbeName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Serial No:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.ProbeSerialNo, new { @class = "form-control hasKeyLocking",@data_keylocking = "alphanumeric", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(m => m.ProbeSerialNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Description:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextAreaFor(m => m.ProbeDesc, new { @class = "form-control", @maxlength = "500" })
+                                        @Html.ValidationMessageFor(m => m.ProbeDesc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Life:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.ProbeLife, new SelectList(Model.ProbeLifeList, "Value", "Text"), new { @id = "ddlProbeLife", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ProbeLife, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Thermostat Type:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.ThermostatTypeId, new SelectList(Model.ThermostatTypeList, "Value", "Text"), new { @id = "ddlThermostatType", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ThermostatTypeId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Entry Date:</label>
+                                    <div class="col-lg-7">
+                                        <div class='input-group date datetimepicker'>
+                                            @Html.TextBoxFor(m => m.ProbeEntryDate, new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div> 
+                                        @Html.ValidationMessageFor(m => m.ProbeEntryDate, "", new { @class = "text-danger" }) 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Exp Date:</label>
+                                    <div class="col-lg-7">
+                                        <div class='input-group date datetimepicker'>
+                                            @Html.TextBoxFor(m => m.ProbeExpDate, new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.ProbeExpDate, "", new { @class = "text-danger" })
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Manufacture:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.ManufacturerId, new SelectList(Model.ManufacturerList, "Value", "Text"), new { @id = "ddlManufacturer", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ManufacturerId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Notes:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextAreaFor(m => m.ProbeNotes, new { @class = "form-control", @maxlength = "1024" })
+                                        @Html.ValidationMessageFor(m => m.ProbeNotes, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 ib control-label">Is Active:</label>
+                                    <div class="col-lg-7 va-bottom ib">
+                                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttom Buttons -->
+            <div class="col-lg-12">
+                <p class="pull-right">
+                    <a role="button" class="btn btn-primary btn-sm" href="~/ProbeSearch/Index">Cancel</a>
+                    &nbsp;
+                    <button type="submit" class="btn btn-primary btn-sm" id="probeSave">&nbsp;Save&nbsp;</button>
+                </p>
+            </div>
+        </div>
+    <script src="~/Scripts/AppJS/probe/mepstemp.probe.js"></script>
+    <script>
+        $(document).ready(function () {
+            MEPSTEMP.UI.Probe.initialisePage(0);
+            $('.datetimepicker').datetimepicker({
+                minDate: '1900-01-01',                
+                useCurrent:false
+            });
+        MEPSTEMP.Global.ApplyMenuSelection('Probe');
+        MEPSTEMP.Global.KeyLocking('.hasKeyLocking', 'data-keylocking');
+    });
+    </script>
+    }
+
+<script>
+        $(document).ready(function () {
+            $('#Probeform').submit(function (e) {
+                $(".listBoxSel").each(function () {
+                    $(this).find('option').each(function () {
+                        $(this).prop("selected", "true");
+                    });
+                });
+            });
+            MEPSTEMP.Global.ValidateDropdown('#ddlSystem');
+            MEPSTEMP.Global.ValidateDropdownOnChange();
+            var sysDataSaved = $('#ddlSystem').data('saved');
+            if (sysDataSaved <= 0)
+                $('#ddlSystem').val(-1);
+            else
+                $('#ddlSystem').val(sysDataSaved);
+        });
+
+</script>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+<div class="row FadeOut mb-sm">
+    <div class="col-lg-12">
+        <div class="alert alert-success mb-sm">
+            <p class="m-none text-semibold h6">
+                @if (!Convert.ToBoolean(ViewData["CustomSuccessMessage"]) && ViewData["CustomSuccessMessage"] != null)
+                {
+                    @Html.Raw(ViewData["CustomSuccessMessage"]);
+                }
+                else
+                {
+                    @Html.Raw(" Success : Record has been Saved Successfully.");
+                }
+
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model MEPS.MEPSTemp.Model.CorrectiveActionTypeSearchViewModel
+@{
+    ViewBag.Title = "Corrective Action Type Search";
+}
+     <!-- Content Start -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel CustomSearchBox">
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="control-label">Search</label>
+                                <input type="text" class="form-control" id="txtSearch" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                <input type="button" class="btn btn-primary" value="Search" id="btnCorrectiveActionTypeSearch" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="DivCorrectiveActionTypeGrid">
+        @Html.Partial("_CorrectiveActionTypeGrid", Model.CorrectiveActionTypeList)
+    </div>
+
+    <script src="~/Scripts/AppJS/correctiveactiontype/mepstemp.correctiveactiontype.search.js"></script>
+    <script>
+        $(document).ready(function () {
+            MEPSTEMP.UI.CorrectiveActionType.Search.initialisePage();
+        });
+    </script>
+

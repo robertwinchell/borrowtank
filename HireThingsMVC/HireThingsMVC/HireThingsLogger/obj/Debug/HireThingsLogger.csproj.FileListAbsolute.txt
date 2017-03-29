@@ -1,0 +1,9 @@
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\bin\Debug\MepsTempLogger.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\bin\Debug\MepsTempLogger.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\obj\Debug\MepsTempLogger.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\obj\Debug\MepsTempLogger.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\HireThingsLogger\bin\Debug\HireThingsLogger.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\HireThingsLogger\bin\Debug\HireThingsLogger.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\HireThingsLogger\obj\Debug\HireThingsLogger.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\MEPSTempPortal\HireThingsLogger\obj\Debug\HireThingsLogger.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\HireThingsLogger\obj\Debug\HireThingsLogger.pdb

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "User SignUp Confirmation";
+    Layout = "~/Views/Shared/FrontEnd/_Layout3.cshtml";
+}
+@using (Html.BeginForm(ASOL.HireThings.Core.Constant.HomeAction, ASOL.HireThings.Core.Constant.HomeController, FormMethod.Get))
+{
+    <div class="section-padding"></div>
+    <!-- Featured SignUp -->
+    <div class="container">
+        <div class="section-padding"></div>
+        <div class="row">
+            <form action="index.html" method="post">
+
+                <div class="getoffer-content">
+                    <h3>User SignUp Successful</h3>
+                    <p>
+                        The user account has been successfully created.<br />
+                        An email has been sent to the user email with detailed instructions on how to activate it.
+                    </p>
+                    <br />
+                    <button type="submit" title="Ok" class="btn btn-lg btn-success"> <i class="fa fa-check" style="margin-right:20px;"></i>OK</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+}

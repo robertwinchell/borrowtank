@@ -1,0 +1,64 @@
+﻿@model ASOL.HireThings.Model.AdvertisementSearchViewModel
+@{
+    ViewBag.Title = "Advertisement Listing";
+}
+
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutLevel2.cshtml";
+}
+
+<!-- Theme Listing -->
+<div class="container-fluid no-padding shopingbrands">
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="section-header">
+            <h3>Choose from our popular hire themes</h3>
+            <p>All cateogries listed, covering all Hire needs.</p>
+        </div>
+        <div class="row">
+
+            @foreach (var listItem in Model.AdvertisementList)
+            {
+                <div class="Pointer col-md-6 col-sm-6 col-xs-6">
+                    <div class="advertisement-block">
+
+                        @*<img src="~/Content/n_assets/images/brand1.jpg" alt="@listItem.Name" width="178" height="100" />*@
+                        <div class="clearfix small">
+                            <h3>
+                                <a data-advertisementid="@listItem.AdvertisementId" href="@Url.Content("~/AdvertisementDetail/"+listItem.AdvertisementId+"#advertisement")" title="@listItem.Name" @*class="brand-content"*@>
+                                    <span>
+                                        @listItem.Name
+                                    </span>
+                                </a>
+                            </h3>
+                            </div>
+                        <div class="clearfix small">Provider: <a class="btnAdvertiserDetail Pointer" data-advertiser="@listItem.AdvertiserId">someone</a></div>
+                        <div class="clearfix">@listItem.Description</div>
+
+                        <div >
+                            <span class="h4">@listItem.ChargingDetail</span>
+                        </div>
+                        @*<div class="clearfix right">
+                            <a class="btn btn-success btnAddToHireplan" data-advertisementid="@listItem.AdvertisementId"><span class="fa fa-plus"></span>Add to HirePlana</a>
+                        </div>*@
+
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+    @*<div class="section-padding"></div>*@
+</div><!-- Theme Listings /- -->
+
+
+<script src="~/Scripts/AppJS/shared/hirethings.hireplana.js"></script>
+<script src="~/Scripts/AppJS/publicAdvertisement/hirethings.advertisement.public.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        HIRETHINGS.UI.Advertisement.Public.initialisePage(0);
+
+    });
+</script>

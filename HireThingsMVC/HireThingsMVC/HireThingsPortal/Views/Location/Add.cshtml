@@ -1,0 +1,216 @@
+﻿@model MEPS.MEPSTemp.Model.TempOrganizationViewModel
+
+@{
+    ViewBag.Title = "Temperature System";
+}
+
+<!-- Content Start -->
+<section class="content-body">
+    <header class="page-header">
+        <h2>Temperature Organization</h2>
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="TempOrganization.html">Temperature Organization</a></li>
+                <li><span>Add/Edit</span></li>
+            </ol>
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">ADD / EDIT Temperature Organization</h2>
+                    <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm"></div>
+                </header>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Temp Organization ID:</label>
+                                <div class="col-lg-7"><input type="text" class="form-control" disabled="disabled" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Customer Organization ID:</label>
+                                <div class="col-lg-7">
+                                    <select class="form-control">
+                                        <option>-- Select --</option>
+                                        <option>Customer Org 1</option>
+                                        <option>Customer Org 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">System ID:</label>
+                                <div class="col-lg-7">
+                                    <select class="form-control">
+                                        <option>-- Select --</option>
+                                        <option>System ID 1</option>
+                                        <option>System ID 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Business Type ID:</label>
+                                <div class="col-lg-7">
+                                    <select class="form-control">
+                                        <option>-- Select --</option>
+                                        <option>Business Type ID 1</option>
+                                        <option>Business Type ID 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization Ref No:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.OrganizationRefNo, new {@class = "form-control" }))</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization Name:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">First Name:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Middle Name:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Last Name:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Address:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Address, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">City:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.City, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Zip Code:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">State:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.State, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Country:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Country, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Phone:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Fax:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Fax, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Website:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Website, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Time Zone ID:</label>
+                                <div class="col-lg-7">
+                                    <select class="form-control">
+                                        <option>-- Select --</option>
+                                        <option>Time Zone 1</option>
+                                        <option>Time Zone 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Parent Organization ID:</label>
+                                <div class="col-lg-7">
+                                    <select class="form-control">
+                                        <option>-- Select --</option>
+                                        <option>Parent Organization 1</option>
+                                        <option>Parent Organization 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization Level ID:</label>
+                                <div class="col-lg-7">
+                                    <select class="form-control">
+                                        <option>-- Select --</option>
+                                        <option>Organization Level 1</option>
+                                        <option>Organization Level 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">DEA No:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.DEANo, new { @class = "form-control" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Is Active</label>
+                                <div class="col-lg-7 va-bottom ib">@Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="#">Cancel</a>
+                &nbsp;
+                <a role="button" class="btn btn-primary btn-sm" href="#">&nbsp;Save&nbsp;</a>
+            </p>
+        </div>
+    </div>
+</section>
+<!-- Content End -->

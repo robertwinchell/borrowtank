@@ -1,0 +1,166 @@
+﻿@model ASOL.HireThings.Model.RoleObjectViewModel
+@{
+    long RoleId = 0;
+    if (Model.RoleObjectList.Count > 0)
+    {
+        RoleId = Model.RoleObjectList.FirstOrDefault().RoleId;
+    }
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="tree table">
+                        <thead>
+                            <tr>
+                                <th>Object</th>
+                                <th>
+                                    <input type="checkbox" id="chkIsActive" @((RoleId == 1) ? "disabled='disabled'" : "") /> &nbsp; Is Active
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="chkIsAllowWrite" @((RoleId == 1) ? "disabled='disabled'" : "") /> &nbsp; Allow Add/Edit
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="chkIsAllowDelete" @((RoleId == 1) ? "disabled='disabled'" : "") /> &nbsp; Allow Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                var _level1 = Model.RoleObjectList.Where(ro => ro.ParentObjectId == 0).OrderBy(oo => oo.ObjectOrder).ToList();
+                                int l1 = 0, l2 = 0, l3 = 0;
+                                foreach (var item in _level1)
+                                {
+                                    var _level2 = Model.RoleObjectList.Where(o => o.ParentObjectId == item.ObjectID).OrderBy(oo => oo.ObjectOrder).ToList();
+
+                                    var checkboxIsActiveLevel1 = new Dictionary<string, object> { { "class", "IsActive" + " chkIsActive-" + (l1 + 1) + ((!item.ShowActive) ? " dependent" : "") } };
+                                    var checkboxAllowWriteLevel1 = new Dictionary<string, object> { { "class", "AllowWrite" + " chkAllowWrite-" + (l1 + 1) + ((!item.ShowActive) ? " dependent" : "") } };
+                                    var checkboxAllowDeleteLevel1 = new Dictionary<string, object> { { "class", "AllowDelete" + " chkAllowDelete-" + (l1 + 1) + ((!item.ShowActive) ? " dependent" : "") } };
+                                    if ((RoleId == 1) || !item.ShowActive)
+                                    {
+                                        checkboxIsActiveLevel1.Add("disabled", "disabled");
+                                        checkboxAllowWriteLevel1.Add("disabled", "disabled");
+                                        checkboxAllowDeleteLevel1.Add("disabled", "disabled");
+                                    }
+                                    else if (!item.IsActive)
+                                    {
+                                        checkboxAllowWriteLevel1.Add("disabled", "disabled");
+                                        checkboxAllowDeleteLevel1.Add("disabled", "disabled");
+                                    }
+
+                                    if (!item.ShowActive || !item.IsActive)
+                                    {
+                                        item.IsActive = false;
+                                        item.AllowWrite = false;
+                                        item.AllowDelete = false;
+                                    }
+                                    
+                                    <tr class="treegrid-@(++l1) Level1-TableTree" data-roleobjectid="@item.RoleObjectId" data-objectid="@item.ObjectID" data-rowindex="@(l1)">
+                                        <td>@item.ObjectName</td>
+                                        <td>@Html.CheckBox("IsActive", item.IsActive, checkboxIsActiveLevel1)</td>
+                                        <td>@Html.CheckBox("AllowWrite", item.AllowWrite, checkboxAllowWriteLevel1)</td>
+                                        <td>@Html.CheckBox("AllowDelete", item.AllowDelete, checkboxAllowDeleteLevel1)</td>
+                                    </tr>
+
+                                    if (_level2.Count > 0)
+                                    {
+                                        l2 = l1;
+                                        foreach (var item2 in _level2)
+                                        {
+                                            var checkboxIsActiveLevel2 = new Dictionary<string, object> { { "class", "IsActive" + " chkIsActive-" + l1 + " chkIsActive-parent-" + (l2 + 1) + ((!item.ShowActive || !item2.ShowActive) ? " dependent" : "") } };
+                                            var checkboxAllowWriteLevel2 = new Dictionary<string, object> { { "class", "AllowWrite" + " chkAllowWrite-" + l1 + " chkAllowWrite-parent-" + (l2 + 1) + ((!item.ShowActive || !item2.ShowActive) ? " dependent" : "") } };
+                                            var checkboxAllowDeleteLevel2 = new Dictionary<string, object> { { "class", "AllowDelete" + " chkAllowDelete-" + l1 + " chkAllowDelete-parent-" + (l2 + 1) + ((!item.ShowActive || !item2.ShowActive) ? " dependent" : "") } };
+                                            if ((RoleId == 1) || !item.ShowActive || !item2.ShowActive)
+                                            {
+                                                checkboxIsActiveLevel2.Add("disabled", "disabled");
+                                                checkboxAllowWriteLevel2.Add("disabled", "disabled");
+                                                checkboxAllowDeleteLevel2.Add("disabled", "disabled");
+                                            }
+                                            else if (!item2.IsActive)
+                                            {
+                                                checkboxAllowWriteLevel2.Add("disabled", "disabled");
+                                                checkboxAllowDeleteLevel2.Add("disabled", "disabled");
+                                            }
+
+                                            if (!item.ShowActive || !item.IsActive || !item2.ShowActive || !item2.IsActive)
+                                            {
+                                                item2.IsActive = false;
+                                                item2.AllowWrite = false;
+                                                item2.AllowDelete = false;
+                                            }
+
+                                            var _level3 = Model.RoleObjectList.Where(o => o.ParentObjectId == item2.ObjectID).OrderBy(oo => oo.ObjectOrder).ToList();
+                                            <tr class="treegrid-@(++l2) treegrid-parent-@l1 Level2-TableTree" data-roleobjectid="@item2.RoleObjectId" data-objectid="@item2.ObjectID" data-parentindex="@l1" data-rowindex="@(l2)">
+                                                <td>@item2.ObjectName</td>
+                                                <td>@Html.CheckBox("IsActive", item2.IsActive, checkboxIsActiveLevel2)</td>
+                                                <td>@Html.CheckBox("AllowWrite", item2.AllowWrite, checkboxAllowWriteLevel2)</td>
+                                                <td>@Html.CheckBox("AllowDelete", item2.AllowDelete, checkboxAllowDeleteLevel2)</td>
+                                            </tr>
+
+                                            if (_level3.Count > 0)
+                                            {
+                                                l3 = l2;
+                                                foreach (var item3 in _level3)
+                                                {
+                                                    var checkboxIsActiveLevel3 = new Dictionary<string, object> { { "class", "IsActive" + " chkIsActive-" + l1 + " chkIsActive-parent-" + l2 + ((!item3.ShowActive) ? " dependent" : "") } };
+                                                    var checkboxAllowWriteLevel3 = new Dictionary<string, object> { { "class", "AllowWrite" + " chkAllowWrite-" + l1 + " chkAllowWrite-parent-" + l2 + ((!item3.ShowActive) ? " dependent" : "") } };
+                                                    var checkboxAllowDeleteLevel3 = new Dictionary<string, object> { { "class", "AllowDelete" + " chkAllowDelete-" + l1 + " chkAllowDelete-parent-" + l2 + ((!item3.ShowActive) ? " dependent" : "") } };
+                                                    if ((RoleId == 1) || !item.ShowActive || !item2.ShowActive || !item3.ShowActive)
+                                                    {
+                                                        checkboxIsActiveLevel3.Add("disabled", "disabled");
+                                                        checkboxAllowWriteLevel3.Add("disabled", "disabled");
+                                                        checkboxAllowDeleteLevel3.Add("disabled", "disabled");
+                                                    }
+                                                    else if (!item3.IsActive)
+                                                    {
+                                                        checkboxAllowWriteLevel3.Add("disabled", "disabled");
+                                                        checkboxAllowDeleteLevel3.Add("disabled", "disabled");
+                                                    }
+
+                                                    if (!item3.ShowActive || !item3.IsActive)
+                                                    {
+                                                        item3.IsActive = false;
+                                                        item3.AllowWrite = false;
+                                                        item3.AllowDelete = false;
+                                                    }
+
+                                                    <tr class="treegrid-@(++l3) treegrid-parent-@l2 Level3-TableTree" data-roleobjectid="@item3.RoleObjectId" data-objectid="@item3.ObjectID" data-parentindex="@l1" data-parentindex2="@l2" data-rowindex="@(l3)">
+                                                        <td>@item3.ObjectName</td>
+                                                        <td>@Html.CheckBox("IsActive", item3.IsActive, checkboxIsActiveLevel3)</td>
+                                                        <td>@Html.CheckBox("AllowWrite", item3.AllowWrite, checkboxAllowWriteLevel3)</td>
+                                                        <td>@Html.CheckBox("AllowDelete", item3.AllowDelete, checkboxAllowDeleteLevel3)</td>
+                                                    </tr>
+                                                }
+                                                l2 = l3;
+                                            }
+                                        }
+                                        l1 = l2;
+                                    }
+                                }
+                            }
+                            
+                        </tbody>
+                    </table>
+                    @if (!(Model.RoleObjectList != null && Model.RoleObjectList.Count > 0))
+                    {
+
+                        @Html.Partial("~/Views/Shared/_Partial/_NoRecordFound.cshtml")
+                    }
+                </div>
+                <div class="datatables-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12" id="btnRow" style="display:none;">
+        <p class="pull-right">
+            <a href="javascript:void(0);" id="btnCancel" class="btn btn-primary btn-sm" role="button">Cancel</a>
+            &nbsp;
+            <a href="javascript:void(0);" id="btnSave" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</a>
+        </p>
+    </div>
+</div>

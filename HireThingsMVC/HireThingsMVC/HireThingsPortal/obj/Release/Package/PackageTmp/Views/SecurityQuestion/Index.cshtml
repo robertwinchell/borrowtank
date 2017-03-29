@@ -1,0 +1,66 @@
+﻿ @model ASOL.HireThings.Model.SecurityQuestionModel
+@{
+    ViewBag.Title = "Security Question";
+}
+
+
+@using (Ajax.BeginForm("Index", "SecurityQuestion", new AjaxOptions { }))
+    {
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right">
+                        <input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index", "SecurityQuestionSearch")'">
+                    </div>
+                </header>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                @Html.LabelFor(m => m.SecurityQuestionId, "Security Question ID:", new { @class = "col-lg-3 control-label" })
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.SecurityQuestionId, new { @class = "form-control CustomReadOnly", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                @Html.LabelFor(m => m.Question, "Security Question:", new { @class = "col-lg-3 control-label" })
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Question, new { @class = "form-control", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(m => m.Question, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                @Html.LabelFor(m => m.IsActive, "Is Active:", new { @class = "col-lg-3 control-label" })
+                                <div class="col-lg-7 va-bottom ib">
+                                    @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="~/SecurityQuestionSearch/Index">Cancel</a>
+                &nbsp;
+                <button type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+            </p>
+        </div>
+    </div>
+    }
+
+<!-- Content End -->
+<script>
+   
+    $(document).ready(function () {
+        HIRETHINGS.Global.ApplyMenuSelection('SecurityQuestion');
+    });
+</script>

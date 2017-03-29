@@ -1,0 +1,45 @@
+﻿@model ASOL.HireThings.Model.SecurityQuestionSearchViewModel
+@{
+    ViewBag.Title = "Security Question";
+}
+
+@using (Html.BeginForm("IndexEdit", "SecurityQuestion", FormMethod.Post, new { id = "SecurityQuestionSearch" }))
+{
+    @Html.Hidden("hdSecurityQuestionId")
+
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="panel CustomSearchBox">
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtSearch" class="control-label">Keyword</label>
+                                <input type="text" class="form-control" id="txtSearch" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                <input type="button" class="btn btn-primary" value="Search" id="btnSecurityQuestionSearch" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="DivSecurityQuestionGrid">
+        @Html.Partial("_SecurityQuestionGrid", Model.SecurityQuestionList)
+    </div>
+
+    <script src="~/Scripts/AppJS/securityquestion/hirethings.securityquestion.search.js"></script>
+    <script>
+        $(document).ready(function () {
+            HIRETHINGS.UI.SecurityQuestion.Search.initialisePage();
+        });
+    </script>
+   
+
+<!-- Content End -->
+}

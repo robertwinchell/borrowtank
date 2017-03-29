@@ -1,0 +1,21 @@
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempDAL.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempDAL.pdb
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempModel.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\System.Web.Mvc.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\MVC Foolproof Validation.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempModel.pdb
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Debug\System.Web.Mvc.xml
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\obj\Debug\MEPSTempCore.csprojResolveAssemblyReference.cache
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\obj\Debug\MEPSTempDAL.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\obj\Debug\MEPSTempDAL.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempDAL.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempDAL.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempModel.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Debug\MEPSTempModel.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\obj\Debug\MEPSTempCore.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\obj\Debug\MEPSTempDAL.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\obj\Debug\MEPSTempDAL.pdb

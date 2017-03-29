@@ -1,0 +1,378 @@
+﻿@model MEPS.MEPSTemp.Model.DeviceModel
+@{
+    ViewBag.Title = "Device";
+    var hidReqSelected= "";
+    if (Model.ProbeModel.RequestedSelected != null)
+    {
+        hidReqSelected = string.Join(",", Model.ProbeModel.RequestedSelected);
+    }
+}
+    @using (Ajax.BeginForm("Index", "Device", new AjaxOptions { }, new { @id = "deviceForm" }))
+    {
+        @Html.HiddenFor(m => m.DeviceId, new { @id = "hdnDeviceId" })
+        <input type="hidden" value="@hidReqSelected"  id="reqSelected"/>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+
+                            <!-- Device Settings -->
+                            <header class="row panel-heading oflo-h pt-none mb-lg bd-radius-none">
+                                <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">Device Settings</h2>
+                                <div class="pull-right">
+                                    <input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index", "DeviceSearch")'" />
+                                </div>
+                            </header>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">System:</label>
+                                    <div class="col-lg-7">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.SystemList)
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Organization:</label>
+                                    <div class="col-lg-7">
+                                        <div id="DivOrganization">
+                                            @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.OrganizationList)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Workstation:</label>
+                                    <div class="col-lg-7">
+                                        <div id="DivWorkStation">
+                                            @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.WorkstationList)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Device Name:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.DeviceName, new { @class = "form-control hasKeyLocking", @maxlength = "100", @data_keylocking = "alphanumeric" })
+                                        @Html.ValidationMessageFor(m => m.DeviceName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Mac Address:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.MacAddress, new { @class = "form-control hasKeyLocking", @maxlength = "17", @data_keylocking = "alphanumeric", @placeholder = "XX:XX:XX:XX:XX:XX" })
+                                        @Html.ValidationMessageFor(m => m.MacAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Device IP:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.DeviceIP, new { @class = "form-control hasKeyLocking", @maxlength = "16", @data_keylocking = "ipaddress", @placeholder = "NHH.NHH.NHH.NHH" })
+                                        @Html.ValidationMessageFor(m => m.DeviceIP, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Device Sr No:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.DeviceSrNo, new { @class = "form-control hasKeyLocking",@data_keylocking = "alphanumeric", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(m => m.DeviceSrNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Firmware Version:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.FirmwareVer, new { @class = "form-control hasKeyLocking", @data_keylocking = "alphanumeric", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(m => m.FirmwareVer, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Firmware Update Time:</label>
+                                    <div class="col-lg-7">
+
+                                        <div class='input-group date datetimepicker' id='datetimepicker1'>
+                                            @Html.TextBoxFor(m => m.FirmwareUpdateTime, new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.FirmwareUpdateTime, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Time Zone:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.TimeZoneId, new SelectList(Model.TimeZoneList, "Value", "Text"), new { @id = "ddlTimeZone", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.TimeZoneId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Is Active:</label>
+                                    <div class="col-lg-7">
+                                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })
+                                    </div>
+                                </div>
+                                
+                              
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Notes:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextAreaFor(m => m.TempNotes, new { @class = "form-control", @maxlength = "1024" })
+                                        @Html.ValidationMessageFor(m => m.TempNotes, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Temperature Settings -->
+                            <header class="panel-heading row oflo-h pt-lg mb-lg">
+                                <h2 class="pull-left panel-title text-semibold text-dark-gray text-uppercase pt-sm">Temperature Settings</h2>
+                            </header>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Temperature Lower Limit <sup>o</sup>C:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.TempLowerLimit, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.TempLowerLimit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Temperature Upper Limit <sup>o</sup>C:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.TempUpperLimit, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.TempUpperLimit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Temperature Warn Min <sup>o</sup>C:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.WarnLowerLimit, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.WarnLowerLimit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Temperature Warn Max <sup>o</sup>C:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.WarnUpperLimit, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.WarnUpperLimit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Emergency Lower Limit:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.EmergencyLowerLimit, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.EmergencyLowerLimit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Emergency Upper Limit:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.EmergencyUpperLimit, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.EmergencyUpperLimit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Measure Unit:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.MeasureUnitId, new SelectList(Model.MeasureUnitList, "Value", "Text"), new { @id = "ddlMeasureUnit", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.MeasureUnitId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Temperature Rec Interval:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.TempRecInterval, new { @class = "form-control hasKeyLocking", @data_keylocking = "numeric", @maxlength="3" })
+                                        @Html.ValidationMessageFor(m => m.TempRecInterval, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Offset:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.TempOffset, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10", @id = "offset" })
+                                        @Html.ValidationMessageFor(m => m.TempOffset, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Live Interval For CTC:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.LiveIntervalForCTC, new { @class = "form-control hasKeyLocking", @data_keylocking = "numeric", @maxlength="4"})
+                                        @Html.ValidationMessageFor(m => m.LiveIntervalForCTC, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Escalation Record Interval:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.EscalRecInterval, new { @class = "form-control hasKeyLocking", @data_keylocking = "numeric", @maxlength="4" })
+                                        @Html.ValidationMessageFor(m => m.EscalRecInterval, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Sys Accuracy:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.SysAccuracy, new { @class = "form-control hasKeyLocking", @data_keylocking = "decimal", @placeholder = "00.0000", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.SysAccuracy, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Maintenance Settings -->
+                            <header class="panel-heading row oflo-h pt-lg mb-lg">
+                                <h2 class="pull-left panel-title text-semibold text-dark-gray text-uppercase pt-sm">Maintenance Settings</h2>
+                            </header>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Display On CTC:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.TempDisplayOnCTC, new SelectList(Model.DisplayCTCList, "Value", "Text"), new { @id = "ddlDisplayONCTC", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Display Resolution:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.DisplayResolution, new SelectList(Model.DisplayResolutionList, "Value", "Text"), new { @id = "ddlDisplayResoulation", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Next Service Date Time:</label>
+                                    <div class="col-lg-7">
+                                        <div class='input-group date datetimepicker'>
+                                            @Html.TextBoxFor(m => m.NextServiceDateTime, new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Calibration Date:</label>              
+                                    <div class="col-lg-7">
+                                        <div class='input-group date datetimepicker'>
+                                            @Html.TextBoxFor(m => m.CalibrationDate, new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Reset Pin:</label>
+                                    <div class="col-lg-7">
+                                        @Html.CheckBoxFor(m => m.ResetPin, new { @class = "mt-sm" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Reset Date:</label>
+                                    <div class="col-lg-7">
+                                        <div class='input-group date datetimepicker'>
+                                            @Html.TextBoxFor(m => m.ResetDate, new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Alarm On/Off:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.AlarmOnOff, new SelectList(Model.AlarmOnOffList, "Value", "Text"), new { @id = "ddlAlarmOnOff", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-lg-5 control-label">Alarm Type:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.AlarmTypeId, new SelectList(Model.AlarmTypeList, "Value", "Text"), new { @id = "ddlAlarmType", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>                      
+
+
+                            <div>
+                                <header class="panel-heading row oflo-h pt-lg mb-lg">
+                                    <h2 class="pull-left panel-title text-semibold text-dark-gray text-uppercase pt-sm">Probe Settings</h2>
+                                </header>
+                                @Html.Partial("~/Views/Shared/_Partial/_Listbox.cshtml", Model.ProbeModel)
+                            </div>
+
+                           
+                            <div >
+                                <header class="panel-heading row oflo-h pt-lg mb-lg">
+                                    <h2 class="pull-left panel-title text-semibold text-dark-gray text-uppercase pt-sm">Device Groups</h2>
+                                </header>
+                                @Html.Partial("~/Views/Shared/_Partial/_Listbox.cshtml", Model.GroupModel)
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Buttom Buttons -->
+            <div class="col-lg-12">
+                <p class="pull-right">
+                    <a role="button" class="btn btn-primary btn-sm" href="~/DeviceSearch/Index">Cancel</a>
+                    &nbsp;
+                    <button type="submit" role="button" id="saveBtn" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+                </p>
+            </div>
+        </div>
+    }
+<script src="~/Scripts/AppJS/Shared/mepstemp.shared.js"></script>
+<script src="~/Scripts/AppJS/device/mepstemp.device.js"></script>
+@if (Model.SystemId > 0)
+{
+    <script>
+        $(document).ready(function () {
+            //1 incase of record updation
+            MEPSTEMP.UI.Device.initialisePage(1);
+        });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            //0 incase of record creation
+            MEPSTEMP.UI.Device.initialisePage(0);
+        });
+    </script>
+}
+@*<script>
+    $(document).ready(function () {
+        var reqIds = $("#reqSelected").val().split(',');
+        $.each(reqIds, function (i) {
+            $(".listBoxSel").append($('.listBoxAvail option[value="' + reqIds[i] + '"]'));
+               
+        });
+    });
+</script>*@
+
+
+

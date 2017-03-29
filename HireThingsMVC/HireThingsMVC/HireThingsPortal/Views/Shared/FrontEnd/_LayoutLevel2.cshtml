@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/FrontEnd/_Layout3.cshtml";
+}
+
+<!-- Photobanner -->
+<div class="container-fluid no-padding photobanner">
+    <div id="home-slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="~/Content/n_assets/images/photoslider1.jpg" alt="slide1" width="1920" height="901" />
+            </div>
+            <div class="item">
+                <img src="~/Content/n_assets/images/photoslider1.jpg" alt="slide1" width="1920" height="901" />
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="photobanner-content">
+            <h3>The #one place to hire in or rent out things</h3>
+            <p>view extensive catalogue in huge range of categories</p>
+            <div class="input-group">
+                <input type="text" id="txtSearchAdvertisement" class="form-control" placeholder="Search Term">
+                <span class="input-group-btn">
+                    <button id="btnSearchAdvertisement" class="btn" title="Search" type="button">Search</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div><!-- Photobanner /- -->
+
+
+@RenderBody()
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (window.location.href.indexOf('Browse/') > 0) {
+            var len = window.location.href.substring(window.location.href.indexOf('Browse/') + 7, window.location.href.length);
+            if (len.length > 0) {
+                
+                $('#txtSearchAdvertisement').val(len);
+            }
+
+        }
+        
+        $('#btnSearchAdvertisement').click(function () {
+            if ($('#txtSearchAdvertisement').val().length > 0) {
+                if (window.location.href.indexOf('browse') > -1)
+                    window.location.href = '../' + $('#txtSearchAdvertisement').val();
+                else
+                    window.location.href = '../Browse/' + $('#txtSearchAdvertisement').val();
+            }
+            
+         });
+    });
+</script>

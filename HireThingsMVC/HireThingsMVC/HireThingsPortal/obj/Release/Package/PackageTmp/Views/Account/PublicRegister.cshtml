@@ -1,0 +1,213 @@
+﻿
+@{
+    Layout = "~/Views/Shared/FrontEnd/_Layout3.cshtml";
+}
+@{
+    ViewBag.Title = "Hirthings Register Page";
+}
+<div class="section-padding"></div>
+<!-- Featured SignUp -->
+<div class="container featuredsignup">
+    <div class="section-padding"></div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="featured-section">
+                <div class="section-header">
+                    <h3>Advantages of being our member</h3>
+                    <p>Today's hot deals handpicked by our Team up!</p>
+                </div>
+                <div class="featuredbox">
+                    <h3>More than 300+ trust worthy online stores</h3>
+                    <p><span class="icon icon-ShoppingCart"></span>Just sit right back and you will hear a tale a tale of a fateful trip that started from this tropic port aboard this tiny ship in a freak mishap ranger and its pilot captain william buck rogers are blown out of their trajectory.</p>
+                </div>
+                <div class="featuredbox">
+                    <h3>24 / 7 Online support for all your queries</h3>
+                    <p><span class="icon icon-Headset"></span>Well the first thing you know old jeds a millionaire kinfolk said jed move away from there come and dance on our floor take a step that is new we have a loveable space that needs your face threes and company.</p>
+                </div>
+                <div class="featuredbox">
+                    <h3>100% Verified online product vendors</h3>
+                    <p><span class="icon icon-ClosedLock"></span>Five passengers set sail that day for a three hour tour a three hour tour believe it or not I am walking on air I never thought I could feel so free just two good old boys would not change if they could fighting system.</p>
+                </div>
+            </div>
+        </div>
+
+        @model ASOL.HireThings.Model.HireThingsUser
+        @{
+            ViewBag.Title = "User";
+        }
+        @using (Html.BeginForm("PublicRegister", "Account",FormMethod.Post, new { @id = "Userform", @class = "signupform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.RoleId)
+            @Html.HiddenFor(m => m.IsActive)
+
+            <div class="col-md-7">
+                <div class="featured-section">
+                    <div class="section-header">
+                        <h3>Get benifits by Joining with us</h3>
+                        <p>Today's hot deals handpicked by our Team up!</p>
+                    </div>
+                    
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(m => m.FirstName, "First Name:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @maxlength = "30" })
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(m => m.MiddleName, "Middle Name:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @maxlength = "30" })
+                                        @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(m => m.LastName, "Last Name:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @maxlength = "30" })
+                                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.EmailId, "Email:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control", @maxlength = "250" })
+                                        @Html.ValidationMessageFor(m => m.EmailId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-2 text-danger">For User Login.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ConfirmEmailId, "Confirm Email:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.ConfirmEmailId, new { @class = "form-control firstTextBox ", @maxlength = "250" })
+
+
+                                        @*@Html.TextBoxFor(m => m.ConfirmEmailId, new { @class = "form-control firstTextBox hasKeyLocking", @maxlength = "250", @data_keylocking = "alphanumeric" })*@
+                                        @Html.ValidationMessageFor(m => m.ConfirmEmailId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Pin, "Password:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.PasswordFor(m => m.Pin, new { @class = "form-control ", @maxlength = "250" })
+
+
+                                        @Html.ValidationMessageFor(m => m.Pin, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ConfirmPin, "Confirm Password:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.PasswordFor(m => m.ConfirmPin, new { @class = "form-control ", @maxlength = "250" })
+
+
+                                        @Html.ValidationMessageFor(m => m.ConfirmPin, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    <label for="@Model.CountryList[0].Identifier" class="col-lg-3 control-label">Country:</label>
+                                    <div class="col-lg-7">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.CountryList)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    <label for="@Model.LocationList[0].Identifier" class="col-lg-3 control-label">Location:</label>
+                                    <div class="col-lg-7">
+                                        <div id="DivLocation">
+                                            @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.LocationList)
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(m => m.PhoneNo, "Phone:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">@Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", @maxlength = "30" })</div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+
+                                    <label for="ddlSecurityQuestion" class="col-lg-3 control-label">Security Question:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.SecurityQuestionID, new SelectList(Model.SecurityQuestionList, "Value", "Text"), new { @id = "ddlSecurityQuestion", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.SecurityQuestionID, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SecurityAnswer, "Answer:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.SecurityAnswer, new { @class = "form-control", @maxlength = "1024" })
+                                        @Html.ValidationMessageFor(m => m.SecurityAnswer, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-6">
+                                <div class="form-group">
+                                    <input value="Sign Up!"  title="SignUp" type="submit">
+                                    @*<button type="submit" class="btn btn-primary btn-sm">&nbsp;Register&nbsp;</button>*@
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+        }
+    </div>
+    <div class="section-padding"></div>
+</div>	<!-- Featured SignUp /- -->
+
+<script src="~/Scripts/AppJS/shared/hirethings.shared.js"></script>
+<script src="~/Scripts/AppJS/user/hirethings.user.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            //0 incase of record creation
+            HIRETHINGS.UI.User.initialisePage(0);
+
+
+        });
+    </script>
+
+@*<script>
+    $(document).ready(function () {
+        HIRETHINGS.UI.Shared.initialisePage('#Userform', '.listboxDiv');
+    });
+
+</script>*@

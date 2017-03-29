@@ -1,0 +1,47 @@
+﻿@model ASOL.HireThings.Model.ForgotPasswordViewModel
+@{
+    ViewBag.Title = "Security Question";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.EmailId)
+    <section class="body-sign">
+        <div class="center-sign">
+            <div class="center mb-sm">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo-large.png" alt="HireThings" />
+                </a>
+            </div>
+
+            <div class="panel panel-sign">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-primary">Security Question</h2>
+                    <p class="panel-subtitle">Enter the answer of your security question.</p>
+                </div>
+                <div class="panel-body">
+                    <form action="index.html" method="post">
+                        <div class="mb-none pb-none">
+                            <label for="Answer"><strong><i>@Model.Question</i></strong></label>
+                            <div class="input-group input-group-icon">
+                                @Html.TextBoxFor(m => m.Answer, new { @class = "form-control input-lg" })
+                                @Html.ValidationMessageFor(m => m.Answer, "", new { @class = "text-danger" })
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-block mt-lg">Verify</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}

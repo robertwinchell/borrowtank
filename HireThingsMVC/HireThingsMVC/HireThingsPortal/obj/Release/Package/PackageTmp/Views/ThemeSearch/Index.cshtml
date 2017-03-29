@@ -1,0 +1,51 @@
+﻿@model ASOL.HireThings.Model.ThemeSearchViewModel
+@{
+    ViewBag.Title = "Theme";
+}
+@using (Html.BeginForm("IndexEdit", "Theme", FormMethod.Post, new { id = "ThemeSearch" }))
+{
+    @Html.Hidden("hdnThemeId")
+
+    <!-- Content Start -->
+   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel CustomSearchBox">
+                    <div class="panel-body">
+                        <div class="">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="txtSearch" class="control-label">Keyword</label>
+                                    <input type="text" class="form-control" id="txtSearch" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="ddlSearch" class="control-label">Search Field</label>
+                                    @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                    <input type="button" class="btn btn-primary" id="btnThemeSearch" value="Search" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="DivThemeGrid">
+            @Html.Partial("_ThemeGrid", Model.ThemeList)
+        </div>
+
+  
+}
+<script src="~/Scripts/AppJS/Theme/hirethings.theme.search.js"></script>
+<script>
+    $(document).ready(function () {
+        HIRETHINGS.UI.Theme.Search.initialisePage();
+    });
+    
+</script>

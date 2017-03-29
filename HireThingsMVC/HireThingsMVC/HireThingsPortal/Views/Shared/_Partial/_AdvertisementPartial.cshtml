@@ -1,0 +1,366 @@
+﻿@model ASOL.HireThings.Model.AdvertisementModel
+
+@using (Html.BeginForm("SaveAdvertisement", "Advertisement", FormMethod.Post, new { id = "AdvertisementForm" }))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                @*<header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index", "AdvertisementSearch")'"></div>
+                </header>*@
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                      
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="ddlCategory" class="col-lg-3 control-label"> Category:</label>
+                                <div class="col-lg-7">
+                                    @Html.ListBoxFor(m => m.CategoryIds, new MultiSelectList(Model.CategoryList, "Value", "Text", Model.CategoryIds), new { @class = "form-control ", @id= "ddlCategory" })
+                                    @Html.ValidationMessageFor(m => m.CategoryIds, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtAdvertisement" class="col-lg-3 control-label"> Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control keylock", @data_keylock = "alphanumeric", @id = "txtName", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtDescription" class="col-lg-3 control-label">
+                                    Description: <br /><span>
+                                        Include alternative words people may use when searching for this.
+                                    </span>
+                                </label>
+
+                                <div class="col-lg-7">
+                                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control keylock", @data_keylock = "special-alphanumeric", @id = "txtDescription", @maxlength = "500" })
+                                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                    <span>Do not include phone numbers, email addresses, addresses, or links to your website here. Use 'contact details' below. </span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <header class="panel-heading oflo-h mb-lg">
+                            <h3 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">Contact Details</h3>
+                        </header>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 caption">
+                                    You are on the 'success fee' listing plan. These contact details will be disclosed to customers when you accept their booking request.
+                                    If you want some or all of your contact details to show on each of your listings, and on your hire storefront, then you will need to opt for a pre-pay plan. click here to change plans. You can change this later also from your profile.
+                                </div>
+                                <label class="col-lg-3 control-label"> Email:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control keylock", @id = "txtEmail", @data_keylock = "email", @maxlength = "200" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+
+                                <label class="col-lg-3 control-label"> Web:</label>
+                                <div class="col-lg-7">
+
+                                    @Html.TextBoxFor(m => m.Web, new { @class = "form-control keylock", @id = "txtWeb", @data_keylock = "special-alphanumeric", @maxlength = "500" })
+                                    @Html.ValidationMessageFor(m => m.Web, "", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+
+                                <label class="col-lg-3 control-label"> phone number:</label>
+                                <div class="col-lg-7">
+
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control keylock", @data_keylock = "alphanumeric", @id = "txtPhoneNumber", @maxlength = "50" })
+                                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+
+                                <label class="col-lg-3 control-label"> Address:</label>
+                                <div class="col-lg-7">
+
+                                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control keylock", @data_keylock = "special-alphanumeric", @id = "txtAddress", @maxlength = "500" })
+                                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <header class="panel-heading oflo-h mb-lg">
+                            <h3 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">Quantity</h3>
+                        </header>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="chkIsMoreThanOne" class="col-lg-3 control-label"> Quantity For Hire:</label>
+                                <div class="col-lg-7  ">
+
+                                    <label class="col-lg-12 "> @Html.RadioButton("chkIsMoreThanOne", "0", new { @class = " pull-left ", @checked = "true" }) 1 only (booking calendar will show existing bookings to customers to avoid double booking)</label>
+                                    <label class="col-lg-12 "> @Html.RadioButton("chkIsMoreThanOne", "1", new { @class = " pull-left " }) More than 1 identical item (Existing bookings not shown, but customers can specify a quantity)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group hidden" id="divIsVisible">
+                            <div class="col-sm-12">
+                                <label for="chkIsVisibleToPublic" class="col-lg-3 control-label"> Make quantity visible to the public?:</label>
+                                <div class="col-lg-7  ">
+
+                                    <label class="col-lg-12 "> @Html.RadioButton("chkIsVisibleToPublic", "0", new { @class = " pull-left ", @checked = "true" }) <span>No</span>             </label>
+                                    <label class="col-lg-12 "> @Html.RadioButton("chkIsVisibleToPublic", "1", new { @class = " pull-left " }) Yes</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group hidden" id="divQuantity">
+                            <div class="col-sm-12">
+                                <label for="txtQuantity" class="col-lg-3 control-label"> Quantity:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control keylock", @data_keylock = "numeric", @id = "txtQuantity", @maxlength = "5", @min = "1", @max = "99999" })
+                                    @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="col-sm-12">
+                                <label for="chkChargingOption" class="col-lg-3 control-label">
+                                    On what basis will you charge?:
+
+                                    <span class="small_text"><br />You must enter some hire rates for this unless it is free of charge, or 'Price on Application'.</span>
+                                </label>
+                                <div class="col-lg-7  ">
+
+                                    <label class="col-lg-12 "> @Html.RadioButton("chkChargingOption", "1", new { @class = " pull-left ", @checked = "true" }) <span>By time</span>             </label>
+                                    <label class="col-lg-12 "> @Html.RadioButton("chkChargingOption", "2", new { @class = " pull-left " }) Fixed rate</label>
+                                    <label class="col-lg-12 disabled"> @Html.RadioButton("chkChargingOption", "3", new { @class = " pull-left ", @disabled = "disabled" }) Price On Application <span class="small_text"><br />(available only on pre-pay plans only, click here to change. You can change this later also from your profile.)</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group " id="hourlyChargeDiv">
+                            <div class="col-sm-12">
+                                <div class="col-lg-3">
+
+                                </div>
+                                <div class="col-lg-7">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-lg-3">
+                                                    hire period
+                                                </th>
+                                                <th class="col-lg-9">
+                                                    hire rates
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="1" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">hour</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="hpvalue  form-control keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="2" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">4 hours</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="short hpvalue  form-control  keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="3" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">day</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="short hpvalue form-control  keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="4" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">week</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="short hpvalue  form-control  keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="5" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">fortnight</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="short hpvalue  form-control  keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="6" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">month</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="short hpvalue  form-control  keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <input type="checkbox" name="hirePeriod" data-hpid="7" class="hirePeriod" />
+                                                        <label class="hirePeriodLabel">year</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="short hpvalue form-control  keylock" data-keylock="decimal" disabled value="0.00" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <label>default display rate</label>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <select id="ddlDefaultDisplayRate" class="form-control"></select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group fixedRate hidden">
+                            <div class="col-sm-12">
+                                <label for="txtFixedRateCharges" class="col-lg-3 control-label"> Fixed Rate Charges:</label>
+                                <div class="col-lg-7">
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.FixedRateCharges, new { @class = "form-control keylock", @data_keylock = "decimal", @id = "txtFixedRateCharges", @maxlength = "10" })
+                                        @Html.ValidationMessageFor(m => m.FixedRateCharges, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="">per "label" </span>
+                                        <span>
+                                            @Html.TextBoxFor(m => m.FixedRateLabel, new { @class = "form-control keylock", @data_keylock = "alphanumeric", @id = "txtFixedRateLabel", @maxlength = "20" })
+                                            @Html.ValidationMessageFor(m => m.FixedRateLabel, "", new { @class = "text-danger" })
+                                        </span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtMinimumCharges" class="col-lg-3 control-label"> Minimum Charges:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MinimumCharges, new { @class = "form-control keylock", @data_keylock = "decimal", @id = "txtMinimumCharges", @maxlength = "10" })
+                                    @Html.ValidationMessageFor(m => m.MinimumCharges, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtBondCharges" class="col-lg-3 control-label"> Bond Charges:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.BondCharges, new { @class = "form-control keylock", @data_keylock = "decimal", @id = "txtBondCharges", @maxlength = "10" })
+                                    @Html.ValidationMessageFor(m => m.BondCharges, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtDepositCharges" class="col-lg-3 control-label"> Deposit Charges:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.DepositCharges, new { @class = "form-control keylock", @data_keylock = "decimal", @id = "txtDepositCharges", @maxlength = "10" })
+                                    @Html.ValidationMessageFor(m => m.DepositCharges, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="txtSpecialTerms" class="col-lg-3 control-label"> Special Terms:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextAreaFor(m => m.SpecialTerms, new { @class = "form-control keylock", @data_keylock = "special-alphanumeric", @id = "txtSpecialTerms", @maxlength = "500" })
+                                    @Html.ValidationMessageFor(m => m.SpecialTerms, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="~/AdvertisementSearch/Index">Cancel</a>
+                &nbsp;
+                <button id="btnSave" type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+            </p>
+        </div>
+    </div>
+    <script src="~/Scripts/AppJS/advertisement/hirethings.advertisement.js"></script>
+    <script>
+            $(document).ready(function () {
+                HIRETHINGS.UI.Advertisement.initialisePage();
+            });
+    </script>
+
+
+
+}

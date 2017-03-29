@@ -1,0 +1,39 @@
+﻿@model MEPS.MEPSTemp.Model.AccountViewModel
+@{
+    ViewBag.Title = "Email Not Verified";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@using (Html.BeginForm("ResendEmail", "Account", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.EmailId)
+    @Html.HiddenFor(m => m.UserName)
+    <section class="body-sign">
+        <div class="center-sign">
+            <div class="center mb-sm">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo-large.png" alt="MEPSTemp" />
+                </a>
+            </div>
+
+            <div class="panel panel-sign">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-danger">Email Not Verified!</h2>
+                    <p class="panel-subtitle">Please verify your account by clicking on the link sent to you via email, If you haven't received any email then click on the "Resend" below.</p>
+                </div>
+                <div class="panel-body">
+                    <form action="index.html" method="post">
+                        <div class="row">
+                            <div class="col-sm-6 text-right">
+                                <button type="submit" class="btn btn-primary btn-block mt-none">Resend</button>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <a role="button" class="btn btn-primary btn-block mt-none" href="~/Account/Login">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}

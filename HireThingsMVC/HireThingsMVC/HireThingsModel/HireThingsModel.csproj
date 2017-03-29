@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2253F0FF-60B3-4F5C-ABB4-5F2363F7EF99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ASOL.HireThings.Model</RootNamespace>
+    <AssemblyName>HireThingsModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MVC Foolproof Validation">
+      <HintPath>..\packages\foolproof.0.9.4517\lib\MVC Foolproof Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseModel.cs" />
+    <Compile Include="Domain\AdvertisementModel.cs" />
+    <Compile Include="Domain\ResponseModel.cs" />
+    <Compile Include="Domain\ExportGridViewModel.cs" />
+    <Compile Include="Domain\HirePlanaModel.cs" />
+    <Compile Include="Domain\IHirePlanaModel.cs" />
+    <Compile Include="Domain\IAdvertisementModel.cs" />
+    <Compile Include="Domain\AdvertisementSearchViewModel.cs" />
+    <Compile Include="Domain\ICategorySearchViewModel.cs" />
+    <Compile Include="Domain\ICategoryModel.cs" />
+    <Compile Include="Domain\IAdvertisementSearchViewModel.cs" />
+    <Compile Include="Domain\ICartModel.cs" />
+    <Compile Include="Domain\MainModel.cs" />
+    <Compile Include="Domain\HomeModel.cs" />
+    <Compile Include="Domain\ExportGridModel.cs" />
+    <Compile Include="Domain\IDeviceReportViewModel.cs" />
+    <Compile Include="Domain\IExportGridViewModel.cs" />
+    <Compile Include="Domain\IExportGridModel.cs" />
+    <Compile Include="Domain\IHomeModel.cs" />
+    <Compile Include="Domain\IItemDeleteModel.cs" />
+    <Compile Include="Domain\IWebAPIRoleObjectModel.cs" />
+    <Compile Include="Domain\IWebAPIRoleObjectViewModel.cs" />
+    <Compile Include="Domain\ItemDeleteModel.cs" />
+    <Compile Include="Domain\IUserLogActvityModel.cs" />
+    <Compile Include="Domain\IWebAPIObjectSearchViewModel.cs" />
+    <Compile Include="Domain\IWebAPIRoleModel.cs" />
+    <Compile Include="Domain\IWebAPIRoleSearchViewModel.cs" />
+    <Compile Include="Domain\IWebAPIUser.cs" />
+    <Compile Include="Domain\IWebAPIUserSearchViewModel.cs" />
+    <Compile Include="Domain\IMenuItemModel.cs" />
+    <Compile Include="Domain\IMenuModel.cs" />
+    <Compile Include="Domain\IPageInfo.cs" />
+    <Compile Include="Domain\IRoleObjectViewModel.cs" />
+    <Compile Include="Domain\MenuItemModel.cs" />
+    <Compile Include="Domain\MenuModel.cs" />
+    <Compile Include="Domain\WebAPIRoleObjectViewModel.cs" />
+    <Compile Include="Domain\WebAPIRoleObjectModel.cs" />
+    <Compile Include="Domain\RoleObjectModel.cs" />
+    <Compile Include="Domain\IRoleObjectModel.cs" />
+    <Compile Include="Domain\AccountViewModel.cs" />
+    <Compile Include="Domain\AuthModel.cs" />
+    <Compile Include="Domain\DropdownModel.cs" />
+    <Compile Include="Domain\IAuthModel.cs" />
+    <Compile Include="Domain\IDropdownModel.cs" />
+    <Compile Include="Domain\IObjectModel.cs" />
+    <Compile Include="Domain\IObjectSearchViewModel.cs" />
+    <Compile Include="Domain\IEmailLogModel.cs" />
+    <Compile Include="Domain\EmailLogModel.cs" />
+    <Compile Include="Domain\IRoleModel.cs" />
+    <Compile Include="Domain\IRoleSearchViewModel.cs" />
+    <Compile Include="Domain\ISecurityQuestionModel.cs" />
+    <Compile Include="Domain\ISecurityQuestionSearchViewModel.cs" />
+    <Compile Include="Domain\ObjectModel.cs" />
+    <Compile Include="Domain\ObjectSearchViewModel.cs" />
+    <Compile Include="Domain\RoleModel.cs" />
+    <Compile Include="Domain\RoleObjectViewModel.cs" />
+    <Compile Include="Domain\RoleSearchViewModel.cs" />
+    <Compile Include="Domain\ExportGridMetaModel.cs" />
+    <Compile Include="Domain\SecurityInfoViewModel.cs" />
+    <Compile Include="Domain\ISecurityInfoViewModel.cs" />
+    <Compile Include="Domain\ListBoxSettingsModel.cs" />
+    <Compile Include="Domain\IListBoxSettingsModel.cs" />
+    <Compile Include="Domain\EmailServersModel.cs" />
+    <Compile Include="Domain\IEmailServerModel.cs" />
+    <Compile Include="Domain\IEmailServerSearchViewModel.cs" />
+    <Compile Include="Domain\EmailServersSearchViewModel.cs" />
+    <Compile Include="Domain\SecurityQuestionModel.cs" />
+    <Compile Include="Domain\SecurityQuestionSearchViewModel.cs" />
+    <Compile Include="Domain\UserLogActvityModel.cs" />
+    <Compile Include="Domain\UserSearchViewModel.cs" />
+    <Compile Include="Domain\ErrorViewModel.cs" />
+    <Compile Include="Domain\HomeViewModel.cs" />
+    <Compile Include="Domain\IAccountViewModel.cs" />
+    <Compile Include="Domain\Identity\IMEPSTempUser.cs" />
+    <Compile Include="Domain\Identity\MEPSTempUser.cs" />
+    <Compile Include="Domain\IUserSearchViewModel.cs" />
+    <Compile Include="Domain\IErrorViewModel.cs" />
+    <Compile Include="Domain\IHomeViewModel.cs" />
+    <Compile Include="Domain\ILocationSearchViewModel.cs" />
+    <Compile Include="Domain\ILocationModel.cs" />
+    <Compile Include="Domain\IDeviceModel.cs" />
+    <Compile Include="Domain\IThemeModel.cs" />
+    <Compile Include="Domain\IThemeSearchViewModel.cs" />
+    <Compile Include="Domain\ICountrySearchViewModel.cs" />
+    <Compile Include="Domain\ICountryModel.cs" />
+    <Compile Include="Domain\IDeviceSearchModel.cs" />
+    <Compile Include="Domain\LocationSearchViewModel.cs" />
+    <Compile Include="Domain\Predicate\CompoundPredicate.cs" />
+    <Compile Include="Domain\Predicate\IPredicate.cs" />
+    <Compile Include="Domain\Predicate\IPredicateBase.cs" />
+    <Compile Include="Domain\Predicate\Predicate.cs" />
+    <Compile Include="Domain\LocationModel.cs" />
+    <Compile Include="Domain\CategoryModel.cs" />
+    <Compile Include="Domain\CategorySearchViewModel.cs" />
+    <Compile Include="Domain\ThemeModel.cs" />
+    <Compile Include="Domain\ThemeSearchViewModel.cs" />
+    <Compile Include="Domain\SearchModel.cs" />
+    <Compile Include="Domain\CountrySearchViewModel.cs" />
+    <Compile Include="Domain\CountryModel.cs" />
+    <Compile Include="Domain\IWebAPIObjectModel.cs" />
+    <Compile Include="Domain\WebAPIObjectModel.cs" />
+    <Compile Include="Domain\WebAPIObjectSearchViewModel.cs" />
+    <Compile Include="Domain\WebAPIRoleModel.cs" />
+    <Compile Include="Domain\WebAPIRoleSearchViewModel.cs" />
+    <Compile Include="Domain\WebAPIUser.cs" />
+    <Compile Include="Domain\WebAPIUserSearchViewModel.cs" />
+    <Compile Include="Utils\ISelectListItem.cs" />
+    <Compile Include="Utils\PublicFunctions.cs" />
+    <Compile Include="IBaseModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\SelectListItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scripts\mvcfoolproof.unobtrusive.min.js" />
+    <Content Include="scripts\MvcFoolproofJQueryValidation.min.js" />
+    <Content Include="scripts\MvcFoolproofValidation.min.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

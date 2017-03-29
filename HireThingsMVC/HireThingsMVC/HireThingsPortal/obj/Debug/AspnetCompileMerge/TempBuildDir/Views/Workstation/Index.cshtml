@@ -1,0 +1,139 @@
+﻿@model MEPS.MEPSTemp.Model.WorkstationModel
+
+@{
+    ViewBag.Title = "Temperature System";
+}
+
+
+@using (Ajax.BeginForm("Index", "Workstation", new AjaxOptions { }))
+{
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index","WorkstationSearch")'"></div>
+                </header>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">WS  ID:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.WorkstationId, new { @class = "form-control CustomReadOnly", @readonly = true })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">System:</label>
+                                <div class="col-lg-7">
+                                    @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.SystemList)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+				                <label class="col-lg-3 control-label">Organization:</label>
+                                <div class="col-lg-7">
+                                    <div id="DivOrganization">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.OrganizationList)
+                                    </div>
+
+                                </div>
+                        </div>
+                            </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Storage Types:</label>
+                                <div class="col-lg-7">
+                                  @Html.DropDownListFor(m => m.StorageTypeId, new SelectList(Model.StorageTypeList, "Value", "Text"), new { @id = "ddlOrg", @class = "form-control" }) 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Customer WS ID:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.CustomerWSId, new { @class = "form-control hasKeyLocking", @maxlength = "10", @data_keylocking = "numeric" })
+                                    @Html.ValidationMessageFor(m => m.CustomerWSId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">WS Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.WSName, new { @class = "form-control", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(m => m.WSName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">WS Serial No:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.WSSerialNo, new { @class = "form-control hasKeyLocking", @maxlength = "50", @data_keylocking = "alphanumeric" })
+                                    @Html.ValidationMessageFor(m => m.WSSerialNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Model No:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ModelNo, new { @class = "form-control hasKeyLocking", @maxlength = "50", @data_keylocking = "alphanumeric" })
+                                    @Html.ValidationMessageFor(m => m.ModelNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Time Zone:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.TimeZoneID, new SelectList(Model.TimeZoneList, "Value", "Text"), new { @id = "ddlTimeZone", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TimeZoneID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Is Active</label>
+                                <div class="col-lg-7 va-bottom ib">@Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="~/WorkstationSearch/index">Cancel</a>
+                &nbsp;
+                <button type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+            </p>
+        </div>
+    </div>
+
+}
+
+<script src="~/Scripts/AppJS/workstation/mepstemp.workstation.js"></script>
+@if (Model.SystemId > 0)
+{
+    <script>
+        $(document).ready(function () {
+            //1 incase of record updation
+            MEPSTEMP.UI.Workstation.initialisePage(1);
+        });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            //0 incase of record creation
+            MEPSTEMP.UI.Workstation.initialisePage(0);
+        });
+    </script>
+}
+<!-- Content End -->

@@ -1,0 +1,32 @@
+﻿@model MEPS.MEPSTemp.Model.DeviceModel
+<!-- Probe Settings -->
+<header class="panel-heading row oflo-h pt-lg mb-lg">
+    <h2 class="pull-left panel-title text-semibold text-dark-gray text-uppercase pt-sm">Probe Settings</h2>
+</header>
+
+@using (Ajax.BeginForm("ProbeSettings", "Device", FormMethod.Post, null))
+{
+    <div class="form-group mt-xl pt-md pb-md">
+        <div class="col-lg-6">
+            <div class="col-lg-7 col-lg-offset-5">
+                <label class="ListingHeading">Available Probes:</label>
+                @Html.ListBoxFor(m => m.ProbeModel.AvailableSelected, new MultiSelectList(Model.ProbeModel.AvailableProducts, "Id", "Name", Model.ProbeModel.AvailableSelected), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-lg-2 text-center visible-lg pl-none mr-sm">
+                <div style="margin-top:30px; width:35px;" class="btn-group text-center">
+                    <input type="submit" name="add" id="add" value=">>" /><br />
+                    <input type="submit" name="remove" id="remove" value="<<" />
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <label class="ListingHeading">Selected Probes:</label>
+                @Html.ListBoxFor(m => m.ProbeModel.RequestedSelected, new MultiSelectList(Model.ProbeModel.RequestedProducts, "Id", "Name", Model.ProbeModel.RequestedSelected), new { @class = "form-control" })
+            </div>
+
+        </div>
+        @Html.HiddenFor(m => m.ProbeModel.SavedRequested)
+    </div>
+}

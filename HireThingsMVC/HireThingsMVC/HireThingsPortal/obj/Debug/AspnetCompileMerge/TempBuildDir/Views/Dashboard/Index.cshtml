@@ -1,0 +1,158 @@
+﻿@model MEPS.MEPSTemp.Model.DashboardModel
+<script src="~/signalr/hubs"></script>
+<link href="~/Content/assets/css/bootstrap-switch.css" rel="stylesheet" />
+<style>
+    @@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.6; background: #FF0000;}
+    50% {opacity: 1.0; background: none;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.6; background: #FF0000;}
+}
+
+    @@keyframes  pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.6; background: #FF0000;}
+    50% {opacity: 1.0; background: none;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.6; background: #FF0000;}
+}
+
+    .newlycreated {
+        -webkit-animation: pulsate  1s ease-in 3;
+        animation: pulsate 1s ease-in 3;
+        -webkit-animation-iteration-count: 10; 
+       animation-iteration-count: 10; 
+    }
+</style>
+<!-- start: page -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <section class="panel panel-featured-primary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fa fa-tasks"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="panel-title">Total Cabinets</h4>
+                                    <div class="info">
+                                        <strong class="amount">@Model.TotalCabinets</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="#">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <section class="panel panel-featured-tertiary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-tertiary">
+                                    <i class="fa fa-bar-chart-o"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="panel-title">Working Cabinets</h4>
+                                    <div class="info">
+                                        <strong class="amount">@Model.WorkingCabinets</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="#">(VIEW ALL)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <section class="panel panel-featured-secondary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-secondary">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="panel-title">Error Alerts</h4>
+                                    <div class="info">
+                                        <strong class="amount">@Model.ErrorAlerts</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="#">(VIEW ALL)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <section class="panel panel-featured-quartenary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-quartenary">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="panel-title">Reminders</h4>
+                                    <div class="info">
+                                        <strong class="amount">@Model.TotalAlerts</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" href="#">(VIEW ALL)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ====================================================================================== -->
+<!-- Table 1 -->
+<div id="DivDashboardErrorGrid">
+    @Html.Partial("_GetDashboardErrorGrid", Model.DashboardErrorList)
+</div>
+
+<!-- Table 2 -->
+
+<div id="DivDashboardErrorGridCorrAction">
+    @Html.Partial("_GetDashboardErrorCorrActionBeingTakenGrid", Model.DashboardErrorListCorrAction)
+</div>
+
+<!-- Table 3 -->
+<div id="DivTempReadingGrid">
+    @Html.Partial("_GetTempReadingGrid", Model.TempReadingList)
+</div>
+<script>
+    $(document).ready(function () {
+        MEPSTEMP.UI.Dashboard.Search.initialisePage();
+    });
+</script>
+
+
+
+
+<script src="~/Scripts/AppJS/dashboard/mepstemp.dashboard.search.js"></script>
+
+
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Content/assets/js/bootstrap-switch.js"></script>
+

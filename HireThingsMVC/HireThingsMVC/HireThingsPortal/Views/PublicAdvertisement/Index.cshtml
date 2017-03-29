@@ -1,0 +1,24 @@
+﻿@model ASOL.HireThings.Model.AdvertisementModel
+@{
+    ViewBag.Title = "Create Advertisement";
+}
+
+@{
+    Layout = "~/Views/Shared/FrontEnd/_Layout3.cshtml";
+}
+
+<div class="container-fluid no-padding shopingbrands">
+    <div class="section-padding"></div>
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="section-header">
+            <h3>List things for hire</h3>
+            <p>Start getting quotes with in no time.</p>
+        </div>
+        <div class="row">
+
+
+            @Html.Partial("~/Views/Shared/_Partial/_AdvertisementPartial.cshtml", Model)
+            </div>
+</div>
+</div>

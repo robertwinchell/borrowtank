@@ -1,0 +1,10 @@
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\HireThingsModel.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\HireThingsModel.pdb
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\Microsoft.AspNet.Identity.Core.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\MVC Foolproof Validation.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\System.Web.Mvc.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\Microsoft.AspNet.Identity.Core.xml
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\bin\Release\System.Web.Mvc.xml
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\obj\Release\HireThingsModel.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\obj\Release\HireThingsModel.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsModel\obj\Release\HireThingsModel.pdb

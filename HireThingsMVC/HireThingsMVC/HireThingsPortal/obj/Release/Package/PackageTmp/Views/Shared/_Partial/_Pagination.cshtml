@@ -1,0 +1,25 @@
+﻿@model ASOL.HireThings.Model.IPageInfo
+<span class="CustomPagination-TotalRecord">
+
+    <label for="ddlPageSize" class="ib pr-sm va-middle">Show Result:</label>
+    <select id="ddlPageSize" class="form-control input-sm ib va-middle" style="width:65px;">
+
+        @{
+            List<ASOL.HireThings.Model.ISelectListItem> list = Session[ASOL.HireThings.Core.Sessions.DDLPageSize] as List<ASOL.HireThings.Model.ISelectListItem>;
+
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        }
+    </select>
+    <span class="ib va-middle">
+        Total
+        @Html.Label(Model.TRows.ToString(), new { @Id = "lblTotalRows" })
+        Record(s)
+    </span>
+</span>
+<ul id="paginationDiv" class="CustomPagination pagination pagination-sm"></ul>

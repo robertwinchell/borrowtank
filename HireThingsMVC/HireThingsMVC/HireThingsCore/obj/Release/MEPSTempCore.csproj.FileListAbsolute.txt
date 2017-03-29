@@ -1,0 +1,24 @@
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempDAL.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempDAL.pdb
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempModel.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\Microsoft.AspNet.Identity.Core.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\System.Web.Mvc.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\MVC Foolproof Validation.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempModel.pdb
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\Microsoft.AspNet.Identity.Core.xml
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\bin\Release\System.Web.Mvc.xml
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\obj\Release\MEPSTempCore.csprojResolveAssemblyReference.cache
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\obj\Release\MEPSTempDAL.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MEPSTempCore\obj\Release\MEPSTempDAL.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempDAL.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempDAL.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempModel.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\Microsoft.AspNet.Identity.Core.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\System.Web.Mvc.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\MVC Foolproof Validation.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\MEPSTempModel.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\Microsoft.AspNet.Identity.Core.xml
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\bin\Release\System.Web.Mvc.xml
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\obj\Release\MEPSTempCore.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\obj\Release\MEPSTempDAL.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MEPSTempCore\obj\Release\MEPSTempDAL.pdb

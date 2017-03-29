@@ -1,0 +1,271 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home -BorrowTank</title>
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/Content/n_assets/~/Content/n_assets/images/favicon.ico" />
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/n_assets/~/Content/n_assets/images/apple-touch-icon-114x114-precomposed.png">
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/n_assets/~/Content/n_assets/images/apple-touch-icon-72x72-precomposed.png">
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="~/Content/n_assets/~/Content/n_assets/images/apple-touch-icon-57x57-precomposed.png">
+    <!-- Library - Bootstrap v3.3.5 -->
+    <link rel="stylesheet" type="text/css" href="~/Content/n_assets/libraries/lib.css">
+    <!-- StrockGap Icon Fonts -->
+    <link rel="stylesheet" type="text/css" href="~/Content/n_assets/libraries/strokegapicon/stroke-gap-icon.css">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Hind:400,500,600' rel='stylesheet' type='text/css'>
+
+    <!-- Custom - Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/n_assets/style.css">
+
+    <!--[if lt IE 9]>
+        <script src="~/Content/n_assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        window.ApplicationBasePath = '@Url.Content("~")';
+    </script>
+    @Scripts.Render("~/bundles/Customjs")
+    @Scripts.Render("~/bundles/required.js")
+
+
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+    <!-- LOADER -->
+    <div id="site-loader" class="load-complete">
+        <div class="loader">
+            <div class="loader-inner ball-triangle-path">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div><!-- Loader /- -->
+    <!-- Header -->
+    <header class="header-main container-fluid no-padding">
+        <div class="menu-block">
+            <div class="menu-left-bg"></div>
+            <div class="container">
+                <!-- Navigation -->
+                <nav class="navbar ow-navigation">
+                    <div class="col-md-3 no-padding">
+                        <div class="navbar-header">
+                            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @*<a title="Logo" href="@Url.Content("~")" class="navbar-brand"><img src="~/Content/assets/images/logo.png" alt="logo" width="43" height="51" /><span>BorrowTank</span></a>*@
+                            
+                            <a title="Logo" href="@Url.Content("~")" class="navbar-brand"><span style="height:51px">BorrowTank</span></a>
+
+                            <a href="@Url.Content("~")" class="mobile-logo" title="Logo"><h3>BorrowTank</h3></a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 menuinner no-padding">
+                        <div class="navbar-collapse collapse" id="navbar">
+                            <ul class="nav navbar-nav menubar">
+                                <li class="active"><a title="Home" href="@Url.Content("~")">Home</a></li>
+                                <li ><a title="Browse" href="@Url.Content("~/Browse")">Browse</a></li>
+                                <li><a title="My Advertisements" href="@Url.Content("#")">My Advertisements</a></li>                               
+                                @if (Context.User.Identity.IsAuthenticated)
+                                {
+                                
+                                    <li><a href="@Url.Content("~/CreateAdvertisement")" title="List Things For Hire">List Things For Hire</a></li>
+                               
+                                }
+                                @*<li class="dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Pages" href="#">Pages</a>
+                                    <i class="ddl-switch fa fa-angle-down"></i>
+                                    <ul class="dropdown-menu">
+                                        <li><a title="Register" href="#">Register</a></li>
+                                        <li><a title="Categories" href="#">Coupons</a></li>
+                                        <li><a title="404" href="404-page.html">404</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Latest News" href="blog-page.html">Latest News</a>
+                                    <i class="ddl-switch fa fa-angle-down"></i>
+                                    <ul class="dropdown-menu">
+                                        <li><a title="Blog Single" href="blogpost-page.html">Blog Single</a></li>
+                                    </ul>
+                                </li>*@
+                                <li><a title="Contact Us" href="@Url.Content("#")">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav><!-- Navigation /- -->
+                <div class="user-cart">
+                    @{
+                        if (!Context.User.Identity.IsAuthenticated)
+                        {
+                            @*<li><a class="Pointer"> My Hirethings</a></li>
+                            <li><a href="@Url.Content("~/CreateAdvertisement")">List Things For Hire</a></li>*@
+                            
+                            <a href="@Url.Content("~/Account/Login")" title="Login"><i class="fa fa-user Pointer" aria-hidden="true"></i></a>
+                            <a href="@Url.Content("~/Register")" title="Register"><i class="fa fa-user-plus Pointer" aria-hidden="true"></i></a>
+
+                        }
+                        else {
+                            <span>Welcome @Context.User.Identity.Name !</span>
+
+                            <a  title="Logout" href="@Url.Content("~/Account/Logoff")"><i class="fa fa-user-times Pointer" aria-hidden="true"></i></a>
+
+                        }
+                    }
+                   
+                </div>
+            </div>
+        </div>
+    </header><!-- Header /- -->
+    @RenderBody()
+    <!-- Footer Main -->
+    <footer class="footer-main container-fluid no-padding">
+        <div class="footer-main-block">
+            <!-- Container -->
+            <div class="container">
+                <div class="row">
+                    <!-- Support Center -->
+                    <aside class="col-md-2 col-sm-6 col-xs-6 ftr-widget widget_support">
+                        <h3 class="widget-title">Support Center</h3>
+                        <ul>
+                            <li><a title="Using a Coupon" href="#">Using a Coupon</a></li>
+                            <li><a title="Submitting a Coupon" href="#">Submitting a Coupon</a></li>
+                            <li><a title="Managing My Account" href="#">Managing My Account</a></li>
+                            <li><a title="Merchant Help" href="#">Merchant Help</a></li>
+                        </ul>
+                    </aside><!-- Support Center /- -->
+                    <!-- Speical Pages -->
+                    <aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_pages">
+                        <h3 class="widget-title">Speciality pages</h3>
+                        <ul>
+                            <li><a title="Black Friday Deals" href="#">Black Friday Deals</a></li>
+                            <li><a title="Cyber Monday Deals" href="#">Cyber Monday Deals</a></li>
+                            <li><a title="Christmas Sales" href="#">Christmas Sales</a></li>
+                            <li><a title="Free Shipping" href="#">Free Shipping</a></li>
+                        </ul>
+                    </aside><!-- Speical Pages /- -->
+                    <!-- ContactUs -->
+                    <aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_contactus">
+                        <h3 class="widget-title">Contact Us</h3>
+                        <div class="contactinfo-box">
+                            <i class="fa fa-map-marker"></i>
+                            <p>09 Design Street, Mitri, Victoria, Australia.</p>
+                        </div>
+                        <div class="contactinfo-box">
+                            <i class="fa fa-phone"></i>
+                            <p>
+                                <a title="0112345678" href="tel:+0112345678">+01 123 456 78</a>
+                                <a title="0112355689" href="tel:+0112355689">+01 123 556 89</a>
+                            </p>
+                        </div>
+                        <div class="contactinfo-box">
+                            <i class="fa fa-map-marker"></i>
+                            <p>
+                                <a href="mailto:xyz123@testing.com" title="Info@OurDomain.Com">Info@OurDomain.Com</a>
+                                <a href="mailto:xyz123@testing.com" title="Support@OurDomain.Com">Support@OurDomain.Com</a>
+                            </p>
+                        </div>
+                    </aside><!-- ContactUs /- -->
+                    <!-- NewsLetter Widget -->
+                    <aside class="col-md-4 col-sm-6 col-xs-6 ftr-widget widget_newsletter">
+                        <h3 class="widget-title">Subscribe</h3>
+                        <p>Got a dream and we just know now we're gonna make our dream come true</p>
+                        <div class="input-group">
+                            <input type="text" placeholder="Enter Address" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" title="Subscribe" class="btn">Go</button>
+                            </span>
+                        </div>
+                    </aside><!-- NewsLetter Widget /- -->
+                </div>
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-menu">
+                        <nav class="navbar ow-navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div id="navbar2" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="index.html" title="Home">Home</a></li>
+                                    <li><a href="#" title="About Us">About Us</a></li>
+                                    <li><a href="#" title="Services">Services</a></li>
+                                    <li><a href="#" title="Store">Stores</a></li>
+                                    <li><a href="#" title="Carres">Carres</a></li>
+                                    <li><a href="blog-page.html" title="Blog">Blog</a></li>
+                                    <li><a href="#" title="Press">Press</a></li>
+                                    <li><a href="#" title="List your business">List your business</a></li>
+                                    <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
+                                    <li><a href="#" title="Terms or Serivces">Terms or serivces</a></li>
+                                    <li><a href="#" title="Sitemap">Sitemap</a></li>
+                                    <li><a href="contactus-page.html" title="Contact Us">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="footer-about">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12 ftr-about">
+                                <h3 class="widget-title">About Us</h3>
+                                <p>Said Californ'y is the place you ought to be So they loaded up the truck and moved to Beverly. Hills that is. Swimmin' pools movie stars. Straightnin' the curves. Flatnin' the hills Someday the mountain might get ‘em but the law never will.</p>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12 ftr-social">
+                                <h3 class="widget-title">Connect with us</h3>
+                                <ul>
+                                    <li><a title="Facebook" data-toggle="tooltip" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a title="Twitter" data-toggle="tooltip" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a title="Google Plus" data-toggle="tooltip" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a title="Linkedin" data-toggle="tooltip" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a title="Dribbble" data-toggle="tooltip" href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a title="Pinterest" data-toggle="tooltip" href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--  Footer Bottom /- -->
+            </div><!-- Container /- -->
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>Copyright &copy; 2016 - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer><!-- Footer /- -->
+    <!-- JQuery v1.11.3 -->
+    @*<script src="~/Content/n_assets/js/jquery.min.js"></script>*@
+    <!--script src="~/Content/n_assets/js/jquery.knob.js"></script-->
+    <!-- Library - Js -->
+    <script src="~/Content/n_assets/libraries/lib.js"></script><!-- Bootstrap JS File v3.3.5 -->
+    <!-- Library - Google Map API -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+    <!-- Library - Theme JS -->
+    <script src="~/Content/n_assets/js/functions.js"></script>
+</body>
+</html>

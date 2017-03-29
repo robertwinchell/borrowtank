@@ -1,0 +1,111 @@
+﻿@model MEPS.MEPSTemp.Model.AccountViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>Temperature Portal</title>
+
+    <!-- Fonts  -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    @*<link rel="stylesheet" href="../../Content/font-awesome.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css" />
+
+
+
+    <!-- Head Libs -->
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+    <!-- start: page -->
+    <section class="body-sign">
+        <div class="center-sign">
+            <div class="center">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo-large.png" />
+                </a>
+            </div>
+
+            <div class="panel panel-sign">
+                <div class="panel-body">
+                    @*<div class="alert alert-danger">
+                            <p class="m-none text-semibold h6">Invalid User Name or Password. Please try again using your correct information.</p>
+                        </div>*@
+                    @*@Html.ValidationSummary(true)*@
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @using (Html.BeginForm("Login", "Account", new { Returnurl = ViewBag.ReturnUrl }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group mb-lg">
+                            @Html.LabelFor(m => m.UserName)
+                            <div class="input-group input-group-icon">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-lg" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                <span class="input-group-addon">
+                                    <span class="icon icon-lg">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-lg">
+                            <div class="clearfix">
+                                @Html.LabelFor(m => m.Password)
+                            </div>
+                            <div class="input-group input-group-icon">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg", @maxlength = "12" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <span class="input-group-addon">
+                                    <span class="icon icon-lg">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div>
+                                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox-custom checkbox-default" })
+                                    <label for="RememberMe">Remember Me</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8"><a href="~/Account/ForgotPassword" class="text-primary">Forgot Password?</a></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end: page -->
+    <!-- javascript -->
+    <script src="~/Content/assets/js/jquery.js"></script>
+    <script src="~/Content/assets/js/bootstrap.js"></script>
+    <script src="~/Content/assets/js/nanoscroller.js"></script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/Content/assets/js/theme.js"></script>
+
+</body>
+</html>

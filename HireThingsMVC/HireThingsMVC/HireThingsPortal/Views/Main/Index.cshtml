@@ -1,0 +1,100 @@
+﻿@model ASOL.HireThings.Model.MainModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutLevel2.cshtml";
+}
+@{
+    ViewBag.Title = "Hirthings Home Page";
+}
+
+
+<!-- Theme Listing -->
+<div class="container-fluid no-padding shopingbrands">
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="section-header">
+            <h3>Choose from our popular hire themes</h3>
+            <p>All cateogries listed, covering all Hire needs.</p>
+        </div>
+        <div class="row">
+
+            @foreach (var listItem in Model.themeList)
+            {
+            <div class="Pointer col-md-2 col-sm-3 col-xs-3">
+                <div class="">
+
+                    <img src="~/Content/n_assets/images/brand1.jpg" alt="@listItem.Text" width="178" height="100" />
+                   <a data-themeid="@listItem.Value" href="@Url.Content("~/Browse/Theme/"+listItem.Value)" title="@listItem.Text" @*class="brand-content"*@><span>@listItem.Text</span></a>
+                </div>
+            </div>
+
+            }
+
+        </div>
+    </div>
+    @*<div class="section-padding"></div>*@
+</div><!-- Theme Listings /- -->
+<!-- PopularCategory -->
+<div class="container popularcategory">
+    <div class="section-padding"></div>
+    <div class="section-header">
+        <h3>Browse By Popular Categories</h3>
+        <p>Want more?Start by Exploring the categories</p>
+    </div>
+    <div class="row">
+
+        @if (Model.categoryList.Count > 0)
+        {
+            foreach (var listItem in Model.categoryList)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-6 Pointer">
+                    <div class="categorybox">
+                        <div class="category-img">
+                            <img src="~/Content/n_assets/images/categories1.jpg" alt="@listItem.Text" width="270" height="211" />
+                        </div>
+                        <div class="category-content">
+                            <span class="icon icon-Espresso"></span>
+                            <a   href="@Url.Content("~/Browse/Category/"+listItem.Value)" data-categoryid="@listItem.Value" title="@listItem.Text">@listItem.Text</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        }
+        else {
+            <div class="section-header">
+                <p>Ugh! No categories available for now. Get back in a while. </p>
+            </div>
+
+        }
+
+
+    </div>
+    <div class="section-padding"></div>
+</div><!-- PopularCategory /- -->
+<!-- ShopTrading -->
+<div class="container-fluid no-padding shoptrading">
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="section-header">
+            <h3>View latest listings</h3>
+            <p>Hire something</p>
+        </div>
+        <div id="shoptrading-carousel" class="shoptrading-carousel">
+
+            @foreach (var listItem in Model.advertisementList)
+            {
+                <div class="tradingbox">
+                    @*<img src="~/Content/n_assets/images/shoptrading1.jpg" alt="shoptrading1" width="230" height="110" />*@
+                    <p>@listItem.Name</p>
+                    <p>Charges @listItem.ChargingDetail</p>
+                    <a class="Pointer" href="@Url.Content("~/AdvertisementDetail/"+listItem.AdvertisementId+"#advertisement")" data-advertisementid="@listItem.AdvertisementId" title="view this listing">view detail</a>
+                </div>
+
+
+            }
+                        
+        </div>
+    </div>
+    <div class="section-padding"></div>
+</div><!-- ShopTrading /- -->

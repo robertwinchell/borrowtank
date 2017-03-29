@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Security Info confirmation";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+@using (Html.BeginForm("Login", "Account", FormMethod.Get))
+{
+    <section class="body-sign">
+        <div class="center-sign">
+            <div class="center mb-sm">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo-large.png" alt="HireThings" />
+                </a>
+            </div>
+
+            <div class="panel panel-sign">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-success">Security Inforamation Changed</h2>
+                    <p class="panel-subtitle">Your Security Information has been changed</p>
+                </div>
+                <div class="panel-body">
+                    <form action="index.html" method="post">
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-block mt-none">Go To Home Page</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}

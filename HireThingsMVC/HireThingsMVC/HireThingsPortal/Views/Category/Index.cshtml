@@ -1,0 +1,100 @@
+﻿@model ASOL.HireThings.Model.CategoryModel
+@{
+    ViewBag.Title = "Category";
+  }
+
+    @ViewBag.Saved
+    @using (Ajax.BeginForm("Index", "Category", new AjaxOptions { }))
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <header class="panel-heading oflo-h mb-lg">
+                        <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                        <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index","CategorySearch")'"></div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.LabelFor(m => m.CategoryId, "Category ID:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.CategoryId, new { @class = "form-control CustomReadOnly", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label for="ddlTheme" class="col-lg-3 control-label">Theme:</label>
+                                    <div class="col-lg-7">
+                                        @Html.DropDownListFor(m => m.ThemeId, new SelectList(Model.ThemeList, "Value", "Text"), new { @id = "ddlTheme", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ThemeId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="col-lg-3 control-label">Category Name:</label>
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", @maxlength = "200" })
+                                        @Html.ValidationMessageFor(m => m.CategoryName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.LabelFor(m => m.CategorySerialNo, "Serial No:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextBoxFor(m => m.CategorySerialNo, new { @class = "form-control hasKeyLocking",@data_keylocking = "alphanumeric", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(m => m.CategorySerialNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.LabelFor(m => m.CategoryDesc, "Description:", new { @class = "col-lg-3 control-label" })
+                                    <div class="col-lg-7">
+                                        @Html.TextAreaFor(m => m.CategoryDesc, new { @class = "form-control hasKeyLocking", @data_keylocking = "alphanumeric", @maxlength = "50" })
+                                        @Html.ValidationMessageFor(m => m.CategoryDesc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.LabelFor(m => m.ShowOnHomepage, "Show On Home Page:", new { @class = "col-lg-3 ib control-label" })
+                                    <div class="col-lg-7 va-bottom ib">
+                                        @Html.CheckBoxFor(m => m.ShowOnHomepage, new { @class = "mt-sm" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.LabelFor(m => m.IsActive, "Is Active:", new { @class = "col-lg-3 ib control-label" })
+                                    <div class="col-lg-7 va-bottom ib">
+                                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttom Buttons -->
+            <div class="col-lg-12">
+                <p class="pull-right">
+                    <a role="button" class="btn btn-primary btn-sm" href="~/CategorySearch/Index">Cancel</a>
+                    &nbsp;
+                    <button type="submit" class="btn btn-primary btn-sm" id="CategorySave" onclick="return HIRETHINGS.UI.Category.CustomValidation();">&nbsp;Save&nbsp;</button>
+                </p>
+            </div>
+        </div>
+    <script src="~/Scripts/AppJS/Category/hirethings.category.js"></script>
+    <script>
+        $(document).ready(function () {
+            HIRETHINGS.UI.Category.initialisePage(0);
+ 
+    });
+    </script>
+    }

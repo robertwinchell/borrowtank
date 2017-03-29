@@ -1,0 +1,61 @@
+﻿@model MEPS.MEPSTemp.Model.DeviceSearchModel
+@{
+    ViewBag.Title = "Temp Device";
+}
+
+@using (Html.BeginForm("IndexEdit", "Device", FormMethod.Post, new { id = "DeviceSearch" }))
+{
+    @Html.Hidden("hdnDeviceId")
+   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel CustomSearchBox">
+                    <div class="panel-body">
+                        <div class="">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="control-label">System</label>
+                                 
+                                    @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.DDLSystem)
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Organization</label>
+                                    <div id="DivOrganization">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.DDLOrganization)
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="control-label">Search</label>
+                                    <input type="text" class="form-control" id="txtSearch" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Search Field</label>
+                                    @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                    <input type="button" class="btn btn-primary" value="Search" id="btnDeviceSearch" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="DivDeviceGrid">
+            @Html.Partial("_DeviceGrid", Model.DeviceList)
+        </div>
+   
+    <script src="~/Scripts/AppJS/device/mepstemp.device.search.js"></script>
+    <script>
+        $(document).ready(function () {
+            MEPSTEMP.UI.Device.Search.initialisePage();
+        });
+    </script>
+}

@@ -1,0 +1,143 @@
+﻿@model List<ASOL.HireThings.Model.IObjectModel>
+@if (Model != null && Model.Count > 0)
+{
+    @Html.Hidden("hdnCurrentPage", Model[0].CPage)
+    @Html.Hidden("hdnTotalRecords", Model[0].TRows)
+    @Html.Hidden("hdnPageSize", Model[0].PSize)
+
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="tree table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>URL</th>
+                                <th>Is Active</th>
+                                <th>Allow Write</th>
+                                <th>Allow Delete</th>
+                                <th>Is Without Search</th>
+                                <th width="60" class="text-right pb-sm">
+                                    @if (ViewBag.AuthObj.AllowWrite)
+                                    {
+                                        <a class="AddGridIcon" data-toggle="tooltip" data-placement="top" data-original-title="Add" href="~/Object/Index">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    }
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                var _level1 = Model.Where(o => o.ParentObjectId == 0).OrderBy(oo => oo.ObjectOrder).ToList();
+                                int l1 = 0, l2 = 0, l3 = 0;
+                                foreach (var item in _level1)
+                                {
+                                    var _level2 = Model.Where(o => o.ParentObjectId == item.ObjectId).OrderBy(oo => oo.ObjectOrder).ToList();
+                                    <tr class="treegrid-@(++l1) Level1-TableTree">
+                                        <td>@item.Name</td>
+                                        <td>@item.URL</td>
+                                        <td>@Html.CheckBox("IsActive", item.IsActive, new { @disabled = "disabled" })</td>
+                                        <td>@Html.CheckBox("AllowWrite", item.AllowWrite, new { @disabled = "disabled" })</td>
+                                        <td>@Html.CheckBox("AllowDelete", item.AllowDelete, new { @disabled = "disabled" })</td>
+                                        <td>@Html.CheckBox("IsWithoutSearch", item.IsWithoutSearch, new { @disabled = "disabled" })</td>
+                                        <td class="actions">
+                                            @if (ViewBag.AuthObj.AllowWrite)
+                                            {
+                                                <a data-toggle="tooltip" data-placement="top" data-original-title="Edit" data-objectid="@item.ObjectId" class="btnObjectEdit Pointer">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            }
+                                            @*@if (ViewBag.AuthObj.AllowDelete)
+                                                {
+                                                    <a data-toggle="tooltip" data-placement="top" class="Pointer" data-original-title="Delete" >
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                }*@
+                                        </td>
+                                    </tr>
+
+                                    if (_level2.Count > 0)
+                                    {
+                                        l2 = l1;
+                                        foreach (var item2 in _level2)
+                                        {
+                                            var _level3 = Model.Where(o => o.ParentObjectId == item2.ObjectId).OrderBy(oo => oo.ObjectOrder).ToList();
+                                            <tr class="treegrid-@(++l2) treegrid-parent-@l1 Level2-TableTree">
+                                                <td>@item2.Name</td>
+                                                <td>@item2.URL</td>
+                                                <td>@Html.CheckBox("AllowWrite", item2.AllowWrite, new { @disabled = "disabled" })</td>
+                                                <td>@Html.CheckBox("AllowDelete", item2.AllowDelete, new { @disabled = "disabled" })</td>
+                                                <td>@Html.CheckBox("IsWithoutSearch", item2.IsWithoutSearch, new { @disabled = "disabled" })</td>
+                                                <td>@Html.CheckBox("IsActive", item2.IsActive, new { @disabled = "disabled" })</td>
+                                                <td class="actions">
+                                                    @if (ViewBag.AuthObj.AllowWrite)
+                                                    {
+                                                        <a data-toggle="tooltip" data-placement="top" data-original-title="Edit" data-objectid="@item.ObjectId" class="btnObjectEdit Pointer">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    }
+                                                    @*@if (ViewBag.AuthObj.AllowDelete)
+                                                        {
+                                                            <a data-toggle="tooltip" data-placement="top" class="Pointer" data-original-title="Delete" >
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        }*@
+                                                </td>
+                                            </tr>
+
+                                            if (_level3.Count > 0)
+                                            {
+                                                l3 = l2;
+                                                foreach (var item3 in _level3)
+                                                {
+                                                    <tr class="treegrid-@(++l3) treegrid-parent-@l2 Level3-TableTree">
+                                                        <td>@item3.Name</td>
+                                                        <td>@item3.URL</td>
+                                                        <td>@Html.CheckBox("AllowWrite", item3.AllowWrite, new { @disabled = "disabled" })</td>
+                                                        <td>@Html.CheckBox("AllowDelete", item3.AllowDelete, new { @disabled = "disabled" })</td>
+                                                        <td>@Html.CheckBox("IsWithoutSearch", item3.IsWithoutSearch, new { @disabled = "disabled" })</td>
+                                                        <td>@Html.CheckBox("IsActive", item3.IsActive, new { @disabled = "disabled" })</td>
+                                                        <td class="actions">
+                                                            @if (ViewBag.AuthObj.AllowWrite)
+                                                            {
+                                                                <a data-toggle="tooltip" data-placement="top" data-original-title="Edit" data-objectid="@item.ObjectId" class="btnObjectEdit Pointer">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </a>
+                                                            }
+                                                            @*@if (ViewBag.AuthObj.AllowDelete)
+                                                                {
+                                                                    <a data-toggle="tooltip" data-placement="top" class="Pointer" data-original-title="Delete" >
+                                                                        <i class="fa fa-trash-o"></i>
+                                                                    </a>
+                                                                }*@
+                                                        </td>
+                                                    </tr>
+
+
+                                                }
+
+                                                l2 = l3;
+
+                                            }
+
+                                        }
+                                        
+                                        l1 = l2;
+
+                                    }
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

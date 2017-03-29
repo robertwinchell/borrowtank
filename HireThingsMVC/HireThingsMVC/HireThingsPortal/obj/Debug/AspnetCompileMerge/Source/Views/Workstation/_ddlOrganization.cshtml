@@ -1,0 +1,10 @@
+﻿@{
+    Layout = null;
+}
+@model List<MEPS.MEPSTemp.Model.ISelectListItem>
+<label class="col-lg-3 control-label">Temp Organization:</label>
+<div class="col-lg-7">
+   
+    @Html.DropDownList("OrganizationId", new SelectList(Model, "Value", "Text"), new { @id = "ddlOrg"  , @class = "form-control" })
+</div>
+

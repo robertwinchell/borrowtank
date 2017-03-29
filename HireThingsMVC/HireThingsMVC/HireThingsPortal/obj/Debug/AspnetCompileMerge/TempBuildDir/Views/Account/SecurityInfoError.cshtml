@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<section class="body-sign">
+    <div class="center-sign">
+        <div class="center mb-sm">
+            <a href="#" class="logo">
+                <img srcset="~/Content/assets/images/logo-large.png" alt="MEPSTemp" />
+            </a>
+        </div>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Get))
+        {
+            @Html.AntiForgeryToken()
+            <div class="panel panel-sign">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-danger">Security Information Error</h2>
+                    <p class="panel-subtitle">Your security information is incomplete please contact your system administrator.</p>
+                </div>
+                <div class="panel-body">
+                    <form action="index.html" method="post">
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-block mt-none">Go Back</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,41 @@
+﻿
+@model ASOL.HireThings.Model.IItemDeleteModel
+
+
+
+
+
+
+
+<div style="display: block;" class="modal fade in" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="false">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 id="myModalLabel" class="modal-title text-dark-gray text-uppercase text-semibold text-md">Delete Confirmation</h4>
+                <span class="text-danger">Are you sure, you want to delete? All relevant data will be deleted as well.</span>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal pt-sm">
+
+                    <div class="form-group has-error">
+                        <div class="col-sm-12">
+                            @Html.HiddenFor(Model => Model.RecordId)
+                            @Html.LabelFor(m => m.Reason, "Delete Reason:", new { @class = "col-lg-3 control-label" })
+                            <div class="col-lg-7">@Html.TextAreaFor(Model => Model.Reason, new { @class = "form-control", @style = "height:120px" })</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-primary btn-sm" type="button">Cancel</button>
+                <button id="btnDeleteConfirm" class="btn btn-danger btn-sm" type="button">Delete</button>
+            </div>
+
+        </div>
+    </div>
+</div>

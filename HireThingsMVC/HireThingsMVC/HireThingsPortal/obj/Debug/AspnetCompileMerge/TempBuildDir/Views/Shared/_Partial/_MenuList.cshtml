@@ -1,0 +1,44 @@
+﻿@using MEPS.MEPSTemp.Model
+
+@{
+    var menuList = (List<MEPS.MEPSTemp.Model.IMenuModel>)Session[MEPS.MEPSTemp.Core.Constant.ObjectModel];
+}
+
+<div class="nano">
+    <div class="nano-content">
+        <nav id="menu" class="nav-main">
+            <ul class="nav nav-main">
+                @{
+                    if (menuList != null && menuList.Count > 0)
+                    {
+                        foreach (MenuModel item in menuList)
+                        {
+                           
+                                if (@item.HasChildren)
+                                {
+                                    <li class="nav-parent">
+                                        <a data-caption="@item.ParentMenu.Caption"><i class="fa @item.ParentMenu.ObjectImage"></i><span>@item.ParentMenu.ObjectName</span></a>
+                                        <ul class="nav nav-children">
+                                            @foreach (MenuItemModel mItem in item.MenuItemList)
+                                            {
+                                                <li><a class="menuanchor" href=@Url.Content(mItem.URL) data-caption="@mItem.Caption">@mItem.ObjectName</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                <li>
+                                    <a href=@Url.Content(item.ParentMenu.URL) data-caption="@item.ParentMenu.Caption"><i class="fa @item.ParentMenu.ObjectImage"></i><span>@item.ParentMenu.ObjectName</span></a>
+                                </li>
+                                }
+
+                        }
+                    }
+}
+
+            </ul>
+
+        </nav>
+    </div>
+</div>

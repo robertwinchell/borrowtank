@@ -1,0 +1,52 @@
+﻿@model ASOL.HireThings.Model.ObjectSearchViewModel
+
+@using (Html.BeginForm("IndexEdit", "Object", FormMethod.Post, new { id = "ObjectSearch" }))
+{
+    @Html.Hidden("hdObjectId")
+ <!-- Content Start -->
+
+    <div class="row" style="display:none;">
+        <div class="col-lg-12">
+            <div class="panel CustomSearchBox">
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label for="txtSearch" class="control-label">Keyword</label>
+                                <input type="text" class="form-control" id="txtSearch" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="ddlSearch" class="control-label">Search Field</label>
+                                @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                <input type="button" class="btn btn-primary" value="Search" id="btnObjectSearch" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="DivObjectGrid">
+        @Html.Partial("_ObjectGrid", Model.ObjectList)
+    </div>
+    @*@Html.IncludeVersionedJs("/Scripts/AppJS/object/HIRETHINGS.object.search.js")*@
+<script src="~/Scripts/AppJS/object/hirethings.object.search.js" ></script >
+
+
+    <script src='@Url.Content("~/Scripts/jquery.treegrid.js")'></script>
+
+    <script>
+        $(document).ready(function () {
+            HIRETHINGS.UI.Object.Search.initialisePage();
+        });
+    </script>
+
+
+    <!-- Content End -->
+}

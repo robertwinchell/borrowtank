@@ -1,0 +1,5 @@
+﻿
+@model List<MEPS.MEPSTemp.Model.ISelectListItem>
+
+    @Html.DropDownList("d",new SelectList(Model, "Value", "Text"), new { @id = "ddlParentObject", @class = "form-control" })
+         

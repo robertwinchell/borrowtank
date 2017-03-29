@@ -1,0 +1,49 @@
+﻿@model ASOL.HireThings.Model.CountrySearchViewModel
+@{
+    ViewBag.Title = "Country";
+}
+@using (Html.BeginForm("IndexEdit", "Country", FormMethod.Post, new { id = "CountrySearch" }))
+{
+    @Html.Hidden("hdnCountryId")
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="panel CustomSearchBox">
+                    <div class="panel-body">
+                        <div class="">
+                 
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="txtSearch" class="control-label">Keyword</label>
+                                    <input type="text" class="form-control" id="txtSearch" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="ddlSearch" class="control-label">Search Field</label>
+                                    @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                    <input type="button" class="btn btn-primary" id="btnCountrySearch" value="Search" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="DivCountryGrid">
+            @Html.Partial("_CountryGrid", Model.CountryList)
+        </div>
+        <script src="~/Scripts/AppJS/Country/hirethings.country.search.js"></script>
+       
+        <script>
+            $(document).ready(function () {
+                HIRETHINGS.UI.Country.Search.initialisePage();
+                
+            });
+        </script>
+   
+}
+

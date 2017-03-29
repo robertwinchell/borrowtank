@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<section class="content-body pb-none">
+    <header class="page-header">
+        <h2>@ViewData["HeaderTitle"]</h2>
+        
+    </header>
+    <div id="errorDiv"></div>
+
+    @if (!Convert.ToBoolean(ViewData["QuerySuccess"]) && ViewData["QuerySuccess"] != null)
+    {
+        @Html.Partial("~/Views/Shared/Error.cshtml", null);
+    }
+    else if (ViewData["QuerySuccess"] != null)
+    {
+        @Html.Partial("~/Views/Shared/_Success.cshtml", null);
+
+    }
+
+    @RenderBody()
+
+</section>
+<!-- Content End -->

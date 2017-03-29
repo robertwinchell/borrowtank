@@ -1,0 +1,9 @@
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\bin\Release\HireThingsDAL.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\bin\Release\HireThingsDAL.pdb
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\bin\Release\HireThingsModel.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\bin\Release\Microsoft.AspNet.Identity.Core.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\bin\Release\HireThingsModel.pdb
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\bin\Release\Microsoft.AspNet.Identity.Core.xml
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\obj\Release\HireThingsCore.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\obj\Release\HireThingsDAL.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsCore\obj\Release\HireThingsDAL.pdb

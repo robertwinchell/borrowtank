@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Email Resent";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@using (Html.BeginForm(MEPS.MEPSTemp.Core.Constant.LoginAction, MEPS.MEPSTemp.Core.Constant.LoginController, FormMethod.Get))
+{
+    <section class="body-sign">
+        <div class="center-sign">
+            <div class="center mb-sm">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo-large.png" alt="MEPSTemp" />
+                </a>
+            </div>
+
+            <div class="panel panel-sign">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-success">User SignUp Email Resent</h2>
+                    <p class="panel-subtitle">An email has been sent to given email address</p>
+                </div>
+                <div class="panel-body">
+                    <form action="index.html" method="post">
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-block mt-none">Go To Login Page</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}

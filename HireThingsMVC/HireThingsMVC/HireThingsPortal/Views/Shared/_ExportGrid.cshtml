@@ -1,0 +1,275 @@
+﻿@model ASOL.HireThings.Model.IExportGridViewModel
+
+
+
+<!doctype html>
+<html class="fixed">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Temperature Portal</title>
+
+    <!-- Fonts  -->
+    <!-- Bootstrap -->    
+
+    <style>
+            .RecordNotFoundlLable {
+                background-color: #f4f5f6;
+                border-bottom: 1px solid #dddddd;
+                color: #c00;
+                padding: 5px 0 5px 8px;
+            }
+			body {
+				margin:0;
+				padding:0;
+				font-family:Arial, Helvetica, sans-serif;
+				background:#eff3f8;
+			}
+			.header {
+				padding:10px 1% 10px 1%;
+				width:98%;
+				overflow:hidden;
+				background:#b2bbc4;
+			}
+			.header .logo {
+				float:left;
+				color:#0258ab;
+				font-size:30px;
+			}
+			.header .logo em {
+				color:#000000;
+				font-size:12px;
+			}
+			.header .UserName {
+				float:right;
+				text-align:right;
+				color:#0258ab;
+				font-size:16px;
+				padding-top:5px;
+			}
+			.header .UserName em.date {
+				display:block;
+				color:#000000;
+				font-size:12px;
+			}
+
+			.ScreenName {
+				background:#FFF;
+				padding:8px 1% 8px 1%;
+				width:98%;
+				-webkit-box-shadow: 0 2px 2px 2px #c6c6c6;
+				box-shadow: 0 2px 2px 2px #c6c6c6;
+				color:#21262d;
+			}
+
+			.SearchCriteria {
+				overflow: hidden;
+				width: 96%;
+				padding:5px 1%;
+				margin:20px 1% 20px 1%;
+				border:1px solid #dcb99c;
+				overflow:hidden;
+				border-radius:4px;
+				background:#ffffec;
+				color:#725b48;
+				font-size:14px;
+			}
+			.SearchCriteria .row {
+				overflow: hidden;
+				padding:5px 0px;
+			}
+			.SearchCriteria .row .col {
+				width:31%;
+				padding-right:2%;
+                margin-bottom: 10px;
+				float:left;
+			}
+
+
+			.SearchCriteria p {
+				padding:6px 0px;
+				margin:0;
+			}
+			.inner-wrapper {
+				overflow: hidden;
+				width: 98%;
+				margin:20px 1% 20px 1%;
+				border:1px solid #d3d6da;
+				overflow:hidden;
+				border-radius:4px;
+				background:#FFF;
+			}
+
+			table {
+				padding:10px;
+				width:100%;
+				color:#777d8a;
+				font-size:13px;
+			}
+			table th {
+				color:#676a6b;
+				border-bottom: 2px solid #dddddd;
+				padding: 8px;
+				text-align:left;
+				background:#FFF;
+				max-width:350px;
+			}
+			table td {
+				border-bottom: 1px solid #dddddd;
+				padding: 8px;
+				text-align:left;
+				max-width:350px;
+			}
+			tr:nth-child(even) {background: #FFF}
+			tr:nth-child(odd) {background: #f4f5f6}
+
+			table ol {
+				margin:0;
+				padding:0 0 0 15px;
+			}
+			table ol li {
+				margin:0;
+				padding:5px 10px 5px 0;
+			}
+
+			@@media screen and (max-width: 1024px) {
+				.inner-wrapper {
+					border: medium none;
+					overflow-x: auto;
+					overflow-y: hidden;
+					width: 100%;
+				}
+				table { width:1024px; overflow-x: scroll; }
+				table > thead > tr > th,
+				table > thead > tr > td {
+					white-space: wrap;
+					max-width:350px;
+				}
+			}
+
+    </style>
+
+</head>
+<body>
+    <section class="body">
+
+        <!-- Header Start -->
+        <header class="header">
+            <div class="logo">
+                ITMS <em>- Intelliguard Temperature Monitoring System</em>
+            </div>
+            <div class="UserName">
+                @User.Identity.Name <em class="date">@Model.exportGridMetaInfo.LocalizedDateTime</em>
+            </div>
+        </header>
+
+        <div class="ScreenName">
+            @Model.exportGridMetaInfo.FormTitle
+        </div>
+
+        <div class="SearchCriteria">
+            <div class="row">
+                <div class="col">
+                    <strong>Organization:</strong>
+
+                    <span>
+                        @Html.Raw((Model.exportGridMetaInfo.SystemName != string.Empty) ? Model.exportGridMetaInfo.SystemName : "All")
+                    </span>
+                </div>
+                <div class="col">
+                    <strong>Facility:</strong>
+                    <span>
+                        @Html.Raw((Model.exportGridMetaInfo.OrganizationName != string.Empty) ? Model.exportGridMetaInfo.OrganizationName : "All")
+                    </span>
+                </div>
+
+                <div class="col">
+                    <strong>Equipment:</strong>
+                    <span>
+                        @Html.Raw((Model.exportGridMetaInfo.DeviceName != string.Empty) ? Model.exportGridMetaInfo.DeviceName : "All")
+                    </span>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.exportGridMetaInfo.SearchText))
+                {
+                    <div class="col">
+                        <strong>Search Term:</strong>
+                        <span>@Model.exportGridMetaInfo.SearchText</span>
+                    </div>
+                }
+                
+            </div>
+            <div class="row">
+            @if (Model.exportGridMetaInfo.From != null && Model.exportGridMetaInfo.From > DateTime.Now.AddYears(-100))
+            {
+                <div class="col">
+                    <strong>From Date:</strong>
+                    <span>@Model.exportGridMetaInfo.From</span>
+                </div>
+            }
+             @if (Model.exportGridMetaInfo.To != null && Model.exportGridMetaInfo.To > DateTime.Now.AddYears(-100))
+             {
+                <div class="col">
+                    <strong>To Date:</strong>
+                    <span>@Model.exportGridMetaInfo.To</span>
+                </div>
+             }
+                           
+            </div>
+
+        </div>
+        <!-- Header End -->
+
+        <section class="inner-wrapper">
+            <table class="table table-striped table-hover mb-none" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        @if (Model != null)
+                        {
+                            if (Model.exportGridList != null)
+                            {
+                                foreach (var item in Model.exportGridList[0])
+                                {
+                                    @Html.Raw("<th> " + item.HeaderTitle + "</th>");
+                                }
+                            }
+
+                        }
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (ViewData["NoRecord"] == null)
+                    {
+                        if (Model != null)
+                        {
+                            if (Model.exportGridList != null)
+                            {
+                                foreach (var reportItemList in Model.exportGridList)
+                                {
+                                    @Html.Raw("<tr>");
+                                    foreach (var reportItem in reportItemList)
+                                    {
+                                        @Html.Raw("<td> " + reportItem.Value + "</td>");
+                                    }
+                                    @Html.Raw("</tr>");
+
+                                }
+                            }
+                        }
+                    }
+
+                </tbody>
+            </table>
+            @if (ViewData["NoRecord"] != null)
+            {
+                @Html.Partial("~/Views/Shared/_Partial/_NoRecordFound.cshtml")
+            }
+        </section>
+
+
+    </section>
+</body>
+</html>

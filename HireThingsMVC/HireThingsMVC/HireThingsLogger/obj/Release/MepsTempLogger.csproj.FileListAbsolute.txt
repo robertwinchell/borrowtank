@@ -1,0 +1,10 @@
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MepsTempLogger\bin\Release\MepsTempLogger.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MepsTempLogger\bin\Release\MepsTempLogger.pdb
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MepsTempLogger\obj\Release\MepsTempLogger.dll
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MepsTempLogger\obj\Release\MepsTempLogger.pdb
+F:\Development\Meps\MepsTemp\MEPSTempPortal\MepsTempLogger\obj\Release\MepsTempLogger.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\bin\Release\MepsTempLogger.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\bin\Release\MepsTempLogger.pdb
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\obj\Release\MepsTempLogger.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\obj\Release\MepsTempLogger.dll
+E:\Developement\HireThings-MVC\MEPSTempPortal\MepsTempLogger\obj\Release\MepsTempLogger.pdb

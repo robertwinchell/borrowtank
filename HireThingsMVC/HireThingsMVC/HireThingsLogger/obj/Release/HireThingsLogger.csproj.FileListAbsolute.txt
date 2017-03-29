@@ -1,0 +1,5 @@
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsLogger\bin\Release\HireThingsLogger.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsLogger\bin\Release\HireThingsLogger.pdb
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsLogger\obj\Release\HireThingsLogger.csprojResolveAssemblyReference.cache
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsLogger\obj\Release\HireThingsLogger.dll
+E:\Developement\HireThings-MVC\HireThingsMVC\HireThingsLogger\obj\Release\HireThingsLogger.pdb

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "User SignUp Confirmation";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+@using (Html.BeginForm(ASOL.HireThings.Core.Constant.HomeAction, ASOL.HireThings.Core.Constant.HomeController, FormMethod.Get))
+{
+    <section class="body-sign">
+        <div class="center-sign">
+            <div class="center mb-sm">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo-large.png" alt="HireThings" />
+                </a>
+            </div>
+
+            <div class="panel panel-sign">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-success">User SignUp Successful</h2>
+                    <p class="panel-subtitle">
+                        The user account has been successfully created.
+                        An email has been sent to the user email with detailed instructions on how to activate it.
+                    </p>
+                </div>
+                <div class="panel-body">
+                    <form action="index.html" method="post">
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-block mt-none">OK</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}

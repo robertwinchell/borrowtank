@@ -1,0 +1,35 @@
+﻿@model ASOL.HireThings.Model.RoleObjectViewModel
+
+@using (Html.BeginForm("Index", "RoleObject", FormMethod.Post, new { id = "RoleObjectSearch" }))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel CustomSearchBox">
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="ddlSearch" class="control-label">Select Roles</label>
+                                @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.DDLRoleList, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.RoleId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div id="DivObjectRoleGrid">
+        @Html.Partial("_RoleObjectGrid", Model)
+    </div>
+    
+    <script src='@Url.Content("~/Scripts/jquery.treegrid.js")'></script>
+    @Html.IncludeVersionedJs("/Scripts/AppJS/roleobject/HireThings.roleobject.js")
+
+    <script>
+        $(document).ready(function () {
+            HIRETHINGS.UI.RoleObject.initialisePage();
+        });
+    </script>
+}
+<!-- Content End -->

@@ -1,0 +1,197 @@
+﻿@model MEPS.MEPSTemp.Model.MailListModel
+
+<link href="~/Content/chosen.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-tagsinput.css" rel="stylesheet" />
+@using (Ajax.BeginForm("Index", "MailList", new AjaxOptions { }, new { @id = "MailListForm" }))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index", "MailListSearch")'" /></div>
+                </header>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Mail List ID:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.TempMailListId, new { @class = "form-control disabled", @maxlength = "50", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MailListName, new { @class = "form-control hasKeyLocking", @maxlength = "100", @data_keylocking = "alphanumeric" })
+                                    @Html.ValidationMessageFor(m => m.MailListName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">System:</label>
+                                <div class="col-lg-7">
+                                  @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.SystemList)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization:</label>
+                                <div class="col-lg-7">
+                                    <div id="DivOrganization">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.OrganizationList)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Subject:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MailSubject, new { @class = "form-control", @maxlength = "50" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Body:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextAreaFor(m => m.MailBody, new { @class = "form-control", @maxlength = "500" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">To (Mail):</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MailTo, new { @class = "form-control tagedInput", @maxlength = "500" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">To (Mail Group):</label>
+                                <div class="col-lg-7">
+                                    @Html.ListBoxFor(m => m.ToEmailGroupSelected, new MultiSelectList(Model.ToEmailGroupList, "Value", "Text", Model.ToEmailGroupSelected), new { @id = "ddlToEmailGroupListChosen", @class = "form-control emailGroupList" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">CC (Mail):</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MailCC, new { @class = "form-control tagedInput", @maxlength = "500" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">CC (Mail Group):</label>
+                                <div class="col-lg-7">
+                                    @Html.ListBoxFor(m => m.CcEmailGroupSelected, new MultiSelectList(Model.CcEmailGroupList, "Value", "Text", Model.CcEmailGroupSelected), new { @id = "ddlCcEmailGroupListChosen", @class = "form-control emailGroupList" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">BCC (Mail):</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MailBcc, new { @class = "form-control tagedInput", @maxlength = "500" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">BCC (Mail Group):</label>
+                                <div class="col-lg-7">
+                                    @Html.ListBoxFor(m => m.BccEmailGroupSelected, new MultiSelectList(Model.BccEmailGroupList, "Value", "Text", Model.BccEmailGroupSelected), new { @id = "ddlBccEmailGroupListChosen", @class = "form-control emailGroupList" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Is Active:</label>
+                                <div class="col-lg-7 va-bottom ib">@Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })</div>
+                            </div>
+                        </div>
+
+                        <header class="panel-heading row oflo-h pt-lg mb-lg">
+                            <h6 class="text-sm panel-title text-semibold text-dark-gray text-uppercase pt-sm">Alerts</h6>
+                        </header>
+                        
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover mb-none">
+                                            <thead>
+                                                <tr>
+                                                    <th>Alert Type</th>
+                                                    <th style="width:80px;">Is Active</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.AlertTypeList != null)
+                                                {
+                                                    for (int i = 0; i < Model.AlertTypeList.Count(); i++)
+                                                    {
+                                                        <tr>
+                                                            <td>  @Html.DisplayTextFor(m => m.AlertTypeList[i].Text)</td>
+                                                            <td class="center">
+                                                                @Html.HiddenFor(m => m.AlertTypeList[i].Value)
+                                                                @Html.CheckBoxFor(m => m.AlertTypeList[i].Selected)
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a href="@Url.Action("Index", "MailListSearch")" class="btn btn-primary btn-sm" role="button">Cancel</a>
+                &nbsp;
+                <button type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+            </p>
+        </div>
+    </div>
+
+}
+
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-tagsinput.min.js"></script>
+<script src="~/Scripts/AppJS/mailList/mepstemp.mailList.js"></script>
+@if (Model.SystemId > 0)
+{
+    <script>
+        $(document).ready(function () {
+            //1 incase of record updation
+            MEPSTEMP.UI.MailList.initialisePage(1);
+        });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            //0 incase of record creation
+            MEPSTEMP.UI.MailList.initialisePage(0);
+        });
+    </script>
+}
+<script type="text/javascript">
+    MEPSTEMP.Global.KeyLocking('.hasKeyLocking', 'data-keylocking');
+</script>

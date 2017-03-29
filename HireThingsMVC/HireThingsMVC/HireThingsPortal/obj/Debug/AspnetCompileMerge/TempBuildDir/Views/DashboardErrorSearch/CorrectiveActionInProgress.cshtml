@@ -1,0 +1,66 @@
+﻿@model MEPS.MEPSTemp.Model.DashboardErrorSearchViewModel
+<link href="~/Content/assets/css/bootstrap-switch.css" rel="stylesheet" />
+
+@using (Html.BeginForm("IndexEdit", "DashboardError", FormMethod.Post, new { id = "DashboardErrorSearch" }))
+{
+    @Html.Hidden("hdnDashboardErrorId")
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="panel CustomSearchBox">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right"><a href="~/EmailServerSearch/Index" role="button" class="btn btn-primary pull-right btn-sm">Back</a></div>
+                </header>
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label">System</label>
+
+                                @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.DDLSystem)
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Organization</label>
+                                <div id="DivOrganization">
+                                    @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.DDLOrganization)
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label">Search</label>
+                                <input type="text" class="form-control" id="txtSearch" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Search Field</label>
+                                @Html.DropDownListFor(m => m.SearchId, new SelectList(Model.DDLSearch, "Value", "Text"), new { @id = "ddlSearch", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <span class="visible-md visible-sm visible-xs">&nbsp;</span>
+                                <input type="button" class="btn btn-primary" value="Search" id="btnDashboardErrorSearch" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="DivDashboardErrorGrid">
+        @Html.Partial("_DashboardErrorGrid", Model.DashboardErrorList)
+    </div>
+        <script src="~/Content/assets/js/bootstrap-switch.js"></script>
+
+        <script src="~/Scripts/AppJS/DashboardError/mepstemp.dashboarderror.corractioninprogress.js"></script>
+        <script>
+    $(document).ready(function () {
+        MEPSTEMP.UI.DashboardError.CorrActionInProgress.initialisePage();
+    });
+        </script>
+}

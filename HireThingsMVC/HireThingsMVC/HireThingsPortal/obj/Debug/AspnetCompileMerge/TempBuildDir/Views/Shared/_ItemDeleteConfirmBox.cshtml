@@ -1,0 +1,48 @@
+﻿
+@model MEPS.MEPSTemp.Model.IItemDeleteModel
+
+
+
+
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="confirm-delete" class="modal fade in" style="display: block;">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-danger text-uppercase text-semibold text-md" id="myModalLabel">Delete Confirmation</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group mt-lg mb-sm">
+                            <div class="col-sm-12" style="margin-bottom:2%">
+                                <span >
+                                    <label class="col-sm-10 text-danger" style="margin-left:4%">
+                                        <h5>Are you sure you want to delete? All relevant data will be deleted as well.</h5>
+                                    </label>
+                                </span>
+                            </div>
+
+                                <div class="col-sm-12">
+                                    @Html.HiddenFor(Model => Model.RecordId)
+
+                                    <label class="col-lg-3 control-label">Delete Reason:</label>
+                                    <div class="col-lg-7">@Html.TextAreaFor(Model => Model.Reason, new { @class = "form-control", @style = "height:120px" })</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                    <button id="btnDeleteConfirm"  type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

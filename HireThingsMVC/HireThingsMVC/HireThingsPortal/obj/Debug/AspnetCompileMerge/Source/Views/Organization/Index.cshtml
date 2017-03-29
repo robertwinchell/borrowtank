@@ -1,0 +1,284 @@
+﻿@model MEPS.MEPSTemp.Model.OrganizationModel
+
+@{
+    ViewBag.Title = "Temperature System";
+}
+
+<!-- Content Start -->
+
+@using (Ajax.BeginForm("Index", "Organization", new AjaxOptions { }))
+    {
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index","OrganizationSearch")'"></div>
+                </header>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization ID:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.OrganizationId, new { @class = "form-control CustomReadOnly", @readonly = "true" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Customer Organization ID:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.CustomerOrganizationId, new { @class = "form-control hasKeyLocking", @maxlength = "12", @data_keylocking = "numeric", @id = "customerorgid" })
+                                    @Html.ValidationMessageFor(m => m.CustomerOrganizationId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">System:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.SystemId, new SelectList(Model.SystemList, "Value", "Text"), new { @id = "ddlSystem", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.SystemId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization Level:</label>
+                                <div class="col-lg-7">
+                                   @if (Model.OrganizationId == 1)
+                                   { 
+                                        @Html.HiddenFor(m => m.OrganizationLevelID)
+                                        @Html.DropDownListFor(m => m.OrganizationLevelID, new SelectList(Model.OrganizationLevelList, "Value", "Text"), new { @id = "ddlOrganizationLevel", @class = "form-control", @disabled = "true" })
+                                   }
+                                   else
+                                   {
+                                       @Html.DropDownListFor(m => m.OrganizationLevelID, new SelectList(Model.OrganizationLevelList, "Value", "Text"), new { @id = "ddlOrganizationLevel", @class = "form-control" })
+                                   }
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Parent Organization:</label>
+                                <div class="col-lg-7">
+                                        @if (Model.OrganizationId == 1)
+                                        {
+                                            @Html.HiddenFor(m => m.ParentOrganizationID)
+                                            @Html.DropDownListFor(m => m.ParentOrganizationID, new SelectList(Model.ParentOrganizationList, "Value", "Text"), new { @id = "ddlOrganizationLevel", @class = "form-control", @disabled = "true" })
+                                        }
+                                        else
+                                        {
+                                            <div id="DivParentOrganization">
+                                                @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.ParentOrganizationList)
+                                            </div>
+                                        }
+                                            
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Business Type:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.BusinessTypeId, new SelectList(Model.BusinessTypeList, "Value", "Text"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.BusinessTypeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Customer No:</label>
+                                <div class="col-lg-7">  
+                                    @Html.TextBoxFor(m => m.OrganizationRefNo, new { @class = "form-control hasKeyLocking", @maxlength = "100",@data_keylocking = "alphanumeric" })
+                                    @Html.ValidationMessageFor(m => m.OrganizationRefNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control hasKeyLocking", @maxlength = "100", @data_keylocking = "alphanumeric" }) 
+                                    @Html.ValidationMessageFor(m => m.OrganizationName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">First Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control hasKeyLocking",  @maxlength = "50", @data_keylocking = "alphanumeric" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Middle Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control hasKeyLocking", @maxlength = "1", @data_keylocking = "alphanumeric" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Last Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control hasKeyLocking", @maxlength = "50", @data_keylocking = "alphanumeric" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Address:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @maxlength = "255" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">City:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @maxlength = "50" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Zip Code:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @maxlength = "50" })
+                                    @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">State:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.State, new { @class = "form-control", @maxlength = "50" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Country:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control hasKeyLocking", @maxlength = "100",  @data_keylocking = "alphanumeric" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Phone:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control hasKeyLocking", @maxlength = "14",@data_keylocking = "numeric" @*@placeholder = "( ) NNN NNNN"*@ })
+                                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Fax:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Fax, new { @class = "form-control hasKeyLocking" , @maxlength = "14",@data_keylocking = "numeric" @*@placeholder = "( ) NNN NNNN"*@ })
+                                    @Html.ValidationMessageFor(m => m.Fax, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @maxlength = "50", @placeholder = "email@example.com" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Website:</label>
+                                <div class="col-lg-7">@Html.TextBoxFor(m => m.Website, new { @class = "form-control", @maxlength = "50" })</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Time Zone:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.TimeZoneID, new SelectList(Model.TimeZoneList, "Value", "Text"), new { @id = "ddlTimeZone", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TimeZoneID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                       
+                       
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">DEA No:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.DEANo, new { @class = "form-control hasKeyLocking", @maxlength = "9", @placeholder = "XXNNNNNNN", @data_keylocking = "alphanumeric" })
+                                    @Html.ValidationMessageFor(m => m.DEANo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Is Active</label>
+                                <div class="col-lg-7 va-bottom ib">
+                                   @if (Model != null && Model.OrganizationId == 1)
+                                   {
+                                    @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm", onclick = "return false" })
+                                   }
+                                   else
+                                   {
+                                    @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })
+                                   }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="~/OrganizationSearch/Index">Cancel</a>
+                &nbsp;
+                @*<a role="button" class="btn btn-primary btn-sm" href="#">&nbsp;Save&nbsp;</a>*@
+                <button type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+            </p>
+        </div>
+    </div>
+    <script src="~/Scripts/AppJS/organization/mepstemp.organization.js"></script>
+    }
+@if (Model.OrganizationId > 0)
+{
+    <script>
+        $(document).ready(function () {
+            MEPSTEMP.UI.Organization.initialisePage(1);
+
+        });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            MEPSTEMP.UI.Organization.initialisePage(0);
+
+        });
+    </script>
+}
+
+
+<script>
+    $(document).ready(function () {
+        MEPSTEMP.Global.ApplyMasking('#Phone', 'usphone');
+        MEPSTEMP.Global.ApplyMasking('#Fax', 'usphone');
+        MEPSTEMP.Global.KeyLocking('.hasKeyLocking', 'data-keylocking');
+        MEPSTEMP.Global.ApplyMenuSelection('Organization');
+        $("#customerorgid").focus();
+    });
+</script>

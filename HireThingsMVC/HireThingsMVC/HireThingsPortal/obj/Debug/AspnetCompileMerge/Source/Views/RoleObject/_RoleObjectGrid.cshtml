@@ -1,0 +1,144 @@
+﻿@model MEPS.MEPSTemp.Model.RoleObjectViewModel
+@{
+    long RoleId = 0;
+    if(Model.RoleObjectList.Count > 0)
+    { 
+       RoleId = Model.RoleObjectList.FirstOrDefault().RoleId;
+    }
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-none">
+                        <thead>
+                            <tr>
+                                <th>Object</th>
+                                @if(RoleId == 1)
+                                { 
+                                <th> 
+                                    <input type="checkbox" id="chkisactive" disabled="disabled" /> &nbsp; Is Active
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="chkisallowwrite" disabled="disabled" /> &nbsp; Allow Add/Edit
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="chkisallowdelete" disabled="disabled" /> &nbsp; Allow Delete
+                                </th>
+                                }
+                                else
+                                {
+                                    <th>
+                                        <input type="checkbox" id="chkisactive" /> &nbsp; Is Active
+                                    </th>
+                                    <th>
+                                        <input type="checkbox" id="chkisallowwrite" /> &nbsp; Allow Add/Edit
+                                    </th>
+                                    <th>
+                                        <input type="checkbox" id="chkisallowdelete" /> &nbsp; Allow Delete
+                                    </th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(Model != null)
+                            { 
+                               
+                                for (int count = 0; count < Model.RoleObjectList.Count; count++)
+                                {
+                                <tr>
+                                    @Html.HiddenFor(m => @Model.RoleObjectList[count].ObjectID)
+                                    @Html.HiddenFor(m => @Model.RoleObjectList[count].RoleObjectId)
+                                    @Html.HiddenFor(m => @Model.RoleObjectList[count].ObjectName)
+                                    @Html.HiddenFor(m => @Model.RoleObjectList[count].IsChange, new { @id = "ischange_" + @Model.RoleObjectList[count].ObjectID, @name = "chanageHidden", @class = "ischanged" })
+                                   
+                                    <td>@Model.RoleObjectList[count].ObjectName</td>
+                                    <td>
+                                        @if (RoleId == 1)
+                                        {
+                                            @Html.CheckBoxFor(m => @Model.RoleObjectList[count].IsActive, new { @class = "isactivechk", @data_id = @Model.RoleObjectList[count].ObjectID, disabled = "disabled" })
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBoxFor(m => @Model.RoleObjectList[count].IsActive, new { @class = "isactivechk", @data_id = @Model.RoleObjectList[count].ObjectID })
+                                        }
+                                        </td>
+                                    <td>
+                                        @if (@Model.RoleObjectList[count].ShowWrite && RoleId != 1)
+                                        {
+                                            if(@Model.RoleObjectList[count].IsActive)
+                                            { 
+                                                @Html.CheckBoxFor(m => @Model.RoleObjectList[count].AllowWrite, new { @class = "isallowrite dependant", @data_id = @Model.RoleObjectList[count].ObjectID })
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBoxFor(m => @Model.RoleObjectList[count].AllowWrite, new { @class = "isallowrite dependant", disabled = "disabled", @data_id = @Model.RoleObjectList[count].ObjectID })
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (RoleId != 1)
+                                            {
+                                                <input type="checkbox" name=@Model.RoleObjectList[count].AllowWrite disabled="disabled">
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBoxFor(m => @Model.RoleObjectList[count].AllowWrite, new { @class = "", disabled = "disabled" })
+                                            }
+                                        }
+                                            
+                                    </td>
+                                    <td>
+                                        @if (@Model.RoleObjectList[count].ShowDelete && RoleId != 1)
+                                        {
+                                            if(@Model.RoleObjectList[count].IsActive)
+                                            {
+                                                @Html.CheckBoxFor(m => @Model.RoleObjectList[count].AllowDelete, new { @class = "isallowdelete dependant", @data_id = @Model.RoleObjectList[count].ObjectID })
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBoxFor(m => @Model.RoleObjectList[count].AllowDelete, new { @class = "isallowdelete dependant", disabled = "disabled", @data_id = @Model.RoleObjectList[count].ObjectID })
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if(RoleId != 1)
+                                            {
+                                                <input type="checkbox" name=@Model.RoleObjectList[count].AllowDelete disabled="disabled">
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBoxFor(m => @Model.RoleObjectList[count].AllowDelete, new { @class = "", disabled = "disabled" })
+                                            }
+                                        }
+                                    </td>
+
+                                </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                    @if (!(Model.RoleObjectList != null && Model.RoleObjectList.Count > 0))
+                    {
+
+                        @Html.Partial("~/Views/Shared/_Partial/_NoRecordFound.cshtml")
+                    }
+                </div>
+                <div class="datatables-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <p class="pull-right">
+            <a href="#" class="btn btn-primary btn-sm" role="button">Cancel</a>
+            &nbsp;
+            <button type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+﻿@{
+    var menuList = (List<MEPS.MEPSTemp.Model.IMenuModel>)Session[MEPS.MEPSTemp.Core.Constant.ObjectModel];
+}
+
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Temperature Portal</title>
+
+    
+
+
+    @Styles.Render("~/Content/Customcss")
+
+</head>
+
+  
+<body>
+    <script type="text/javascript">
+        window.ApplicationBasePath = '@Url.Content("~")';
+    </script>
+    <div id="topLoader" style="display:none" class="loader r"></div>
+    <section class="body">
+        <!-- Header Start -->
+        <header class="header">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="~/Content/assets/images/logo.png" height="45" alt="MEPSTemp" />
+                    <span> v [2.0.0.1] </span>
+                </a>
+                <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                    <i class="fa fa-bars"></i>
+                </div>
+
+            </div>
+
+            <!-- start: search & user box -->
+            <div class="header-right">
+                <div class="userbox" id="userbox">
+                    <a data-toggle="dropdown" href="#">
+                        <figure class="profile-picture"><img src="~/Content/assets/images/userpic.png" alt="" /></figure>
+                        <div data-lock-email="" data-lock-name="John Doe" class="profile-info">
+                            <span class="name">@User.Identity.Name</span>
+                            <!--<span class="role">administrator</span>-->
+                        </div>
+                        <i class="fa custom-caret"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled">
+                            <li class="divider"></li>
+                            @if(menuList != null)
+                            { 
+                                foreach (var item in menuList)
+                                {
+                                    if(item.HasChildren)
+                                    { 
+                                        if (item.MenuItemList.Where(m => m.Caption == "ProfileSettings").FirstOrDefault() != null)
+                                        {
+                                            <li>
+                                                <a href="~/User/ProfileSettings"><i class="fa fa-user"></i> My Profile</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            }
+                            <li><a href="~/Account/LogOff"><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end: search & user box -->
+        </header>
+        <!-- Header End -->
+
+        <section class="inner-wrapper">
+            <!-- Sidebar Start -->
+            <aside id="sidebar-left" class="sidebar-left">
+
+                <!-- SideBar Header -->
+                <div class="sidebar-header">
+                    <div class="sidebar-title">
+                        Navigation
+                    </div>
+                    <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+                <!-- Left Nav -->
+                @Html.Partial("_Partial/_MenuList")
+
+
+            </aside>
+            @Scripts.Render("~/bundles/Customjs")
+            @Scripts.Render("~/bundles/required.js")
+
+            <script src="~/Scripts/mvcfoolproof.unobtrusive.min.js"></script>
+            <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+           
+            <!-- Sidebar End -->
+            <!-- Content Start -->
+            @RenderBody()
+            <!-- Content End -->
+             @RenderSection("scripts", required: false)
+            <div class="itemDeletionConfirmPlaceholder"></div>
+        </section>
+    </section>
+    @Html.Hidden("hdnChange");   
+
+
+   
+    <!-- ToolTip Script -->
+    <script type="text/javascript">
+        $(document).ready(function () {                      
+            $('[data-toggle="tooltip"]').tooltip();
+            $(".tip-top").tooltip({ placement: 'top' });
+            $(".tip-right").tooltip({ placement: 'right' });
+            $(".tip-bottom").tooltip({ placement: 'bottom' });
+            $(".tip-left").tooltip({ placement: 'left' });
+            var activityCounter = 0;
+            $(document).ajaxSend(function () {
+                activityCounter++;
+                $("#topLoader").css("display", "block");
+            });
+            $(document).ajaxComplete(function () {
+                activityCounter--;
+                if (activityCounter < 1) {
+                    $("#topLoader").css("display", "none");
+                }
+            });            
+            $(':input[type=text]:enabled:not([readonly])').first().focus();
+            var url = window.location.href.toLowerCase();
+            var isSearchForm = $("[value=Search]").hasClass('btn');
+            var flagFormSubmit = false;
+
+            $('form input').change(function () {
+             if(!isSearchForm)
+                $('#hdnChange').val('1');
+            });
+            if (!isSearchForm && $('form').find('input[type=text]').filter(':visible:first').val() > 0)
+            {
+            }                                    
+            $('form').on('submit', function () {             
+                flagFormSubmit = true;
+            });    
+            $(window).on('beforeunload', function () {             
+                if (($('#hdnChange').val() == 1) && !flagFormSubmit) {                    
+                    return 'The current page contains unsaved text that will be lost if you leave this page.';
+                }
+            });           
+        });             
+    </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    @*<title>@ViewBag.Title</title>*@
+    <title>BorrowTank</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    @Styles.Render("~/Content/Customcss")
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/Content/f_assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/f_assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="~/Content/f_assets/css/style-metronic.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/f_assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/f_assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/Content/f_assets/css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/f_assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script type="text/javascript">
+        window.ApplicationBasePath = '@Url.Content("~")';
+    </script>
+    @Scripts.Render("~/bundles/Customjs")
+    @Scripts.Render("~/bundles/required.js")
+
+
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body>
+
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <button class="navbar-toggle btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN LOGO (you can use logo image instead of text)-->
+                <div class="col-lg-4">
+                    <a class="navbar-brand logo-v1" href="@Url.Content("~/")">
+                        <img src="~/Content/assets/images/logo.png" width="200" style="margin-top:-10px" id="logoimg" alt="" />
+
+                    </a>
+                </div>
+                <!-- END LOGO -->
+            </div>
+
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/">Home</a></li>
+                    <li><a  href="@Url.Content("~/Browse")" class="Pointer">Browse</a></li>
+                    @{
+                        if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li><a class="Pointer"> My Advertisements</a></li>
+                            <li><a href="@Url.Content("~/CreateAdvertisement")">List Things For Hire</a></li>
+                        }
+                    }
+
+                    <li><a class="Pointer">Community</a></li>
+                    <li><a class="Pointer">Help About</a></li>
+
+                    @{
+                        if (!Context.User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="@Url.Content("~/Account/Login")" class="Pointer"> Login</a></li>
+
+
+                        }
+
+                    }
+                    <li class="menu-search">
+                        <span class="sep"></span>
+                        <i class="fa fa-search search-btn"></i>
+                        <div class="search-box">
+                            <form action="#">
+                                <div class="input-group input-large">
+                                    <input class="form-control" type="text" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn theme-btn">Go</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    @{
+                        if (Context.User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" class="Pointer">
+                                    @Context.User.Identity.Name!
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Content("~/Account/LogOff")">Logout</a></li>
+                                </ul>
+                            </li>
+
+                        }
+                        else {
+
+                        } }
+                </ul>
+            </div>
+            <!-- BEGIN TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN PAGE CONTAINER -->
+    <div class="page-container">
+        <section class="inner-wrapper">
+            @RenderBody()
+        </section>
+    </div>
+    <!-- END PAGE CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 space-mobile">
+                    <!-- BEGIN ABOUT -->
+                    <h2>About</h2>
+                    <p class="margin-bottom-30">Vivamus imperdiet felis consectetur onec eget orci adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper.</p>
+                    <div class="clearfix"></div>
+                    <!-- END ABOUT -->
+                    <h2>Photos Stream</h2>
+                    <!-- BEGIN BLOG PHOTOS STREAM -->
+                    <div class="blog-photo-stream margin-bottom-30">
+                        <ul class="list-unstyled">
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/people/img5-small.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/works/img1.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/people/img4-large.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/works/img6.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/pics/img1-large.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/pics/img2-large.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/works/img3.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/people/img2-large.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/works/img2.jpg" alt=""></a></li>
+                            <li><a class="Pointer"><img src="~/Content/f_assets/img/works/img5.jpg" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <!-- END BLOG PHOTOS STREAM -->
+                </div>
+                <div class="col-md-6 col-sm-6 space-mobile">
+                    <!-- BEGIN CONTACTS -->
+                    <h2>Contact Us</h2>
+                    <address class="margin-bottom-40">
+                        Loop, Inc. <br />
+                        795 Park Ave, Suite 120 <br />
+                        San Francisco, CA 94107 <br />
+                        P: (234) 145-1810 <br />
+                        Email: <a class="Pointer">borrowtank@gmail.com</a>
+                    </address>
+                    <!-- END CONTACTS -->
+                    <!-- BEGIN SUBSCRIBE -->
+                    <h2>Monthly Newsletter</h2>
+                    <p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+                    <form action="#" class="form-subscribe">
+                        <div class="input-group input-large">
+                            <input class="form-control" type="text">
+                            <span class="input-group-btn">
+                                <button class="btn theme-btn" type="button">SUBSCRIBE</button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- END SUBSCRIBE -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- BEGIN COPYRIGHT -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <p>
+                        <span class="margin-right-10">2016 © BorrowTank. ALL Rights Reserved.</span>
+                        <a class="Pointer">Privacy Policy</a> | <a class="Pointer">Terms of Service</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <ul class="social-footer">
+                        <li><a class="Pointer"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-skype"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-github"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-youtube"></i></a></li>
+                        <li><a class="Pointer"><i class="fa fa-dropbox"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END COPYRIGHT -->
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="~/Content/f_assets/plugins/respond.min.js"></script>
+    <![endif]-->
+    @*<script src="~/Content/f_assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/f_assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    @*<script src="~/Content/f_assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>*@
+    <script type="text/javascript" src="~/Content/f_assets/plugins/back-to-top.js"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script type="text/javascript" src="~/Content/f_assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="~/Content/f_assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="~/Content/f_assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/Content/f_assets/plugins/bxslider/jquery.bxslider.min.js"></script>
+    <script src="~/Content/f_assets/scripts/app.js"></script>
+    <script src="~/Content/f_assets/scripts/index.js"></script>
+
+
+
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/mvcfoolproof.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            App.init();
+            App.initBxSlider();
+            Index.initRevolutionSlider();
+        });
+    </script>
+
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

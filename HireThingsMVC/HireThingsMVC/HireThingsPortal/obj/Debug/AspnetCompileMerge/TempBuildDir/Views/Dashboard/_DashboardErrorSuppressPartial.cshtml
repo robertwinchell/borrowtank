@@ -1,0 +1,106 @@
+﻿@model MEPS.MEPSTemp.Model.IDashboardErrorModel
+
+<!-- ############# Suppress ############# -->
+<div class="modal fade" style="display:none;" id="myModalSuppress" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top:5%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title text-dark-gray text-uppercase text-semibold text-md" id="myModalLabel">Alert Suppress</h4>
+            </div>
+
+            @using (Ajax.BeginForm("DashboardErrorPartial", "Dashboard", new AjaxOptions { }, new { @id = "DashboardErrorForm" }))
+            {
+                @Html.HiddenFor(m=>m.DashBoardErrorId)
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Organization:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control CustomReadOnly", @readonly = true })                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Equipment:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.DeviceName, new { @class = "form-control CustomReadOnly", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Alert Time:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ErrorDate, new { @class = "form-control CustomReadOnly", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Dashboard Error:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.AlertReason, new { @class = "form-control CustomReadOnly", @readonly = true })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Duration (mins):</label>
+                                <div class="col-lg-7">
+
+                                    @Html.HiddenFor(m => m.SuppressInterval)
+                                    @Html.DropDownList("ddlSuppressInterval", new SelectList(Model.ddlSuppressInterval, "Value", "Text"), new { @class = "form-control requiredEl requiredDdl" })                                                                      
+                                </div>
+                                <div style="display:none" class="col-lg-4 ">
+                                    <input id="customSuppressInterval" type="text" maxlength="8"  class="form-control hasKeyLocking" data-keylocking="numeric" />
+                                </div>
+                              
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Suppress User:</label>
+                                <div class="col-lg-7"><input type="text" class="form-control" value="@User.Identity.Name" disabled="" /></div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group" @if (!Model.SuppressStatus) { @Html.Raw("style =\"display:none; \""); }> <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Suppress</label>
+                                <div class="col-lg-7">                      
+                                    @if (!Model.SuppressStatus)
+                                    {
+                                        @Html.CheckBoxFor(m => m.SuppressStatus, new { @class = "hidden", @data_size="mini" })
+                                    }
+                                    else
+                                    {
+                                        @Html.CheckBoxFor(m => m.SuppressStatus, new { @class = "mt-sm", @data_size="mini" })
+                                    }
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Reason:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextAreaFor(m => m.SuppressReason, new { @class = "form-control requiredEl" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="btnSuppressPartialSave" role="button" class="btn btn-primary btn-sm" >Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

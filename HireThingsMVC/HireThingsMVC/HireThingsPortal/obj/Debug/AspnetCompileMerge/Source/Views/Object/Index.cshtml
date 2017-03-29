@@ -1,0 +1,184 @@
+﻿@model MEPS.MEPSTemp.Model.ObjectModel
+
+@{
+    ViewBag.Title = "Object";
+}
+
+@using (Ajax.BeginForm("Index", "Object", new AjaxOptions { }))
+    {
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <header class="panel-heading oflo-h mb-lg">
+                    <h2 class="pull-left panel-title text-dark-gray text-semibold text-uppercase pt-sm">@ViewData["FormTitle"]</h2>
+                    <div class="pull-right"><input type="button" value="Back" class="btn btn-primary pull-right btn-sm" onclick="location.href='@Url.Action("Index","ObjectSearch")'"></div>
+                </header>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Object ID:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ObjectId, new { @class = "form-control", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Module:</label>
+                                <div class="col-lg-7">
+                                    @Html.DropDownListFor(m => m.ModuleId, new SelectList(Model.ModuleList, "Value", "Text"), new { @id = "ddlModule", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ModuleId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Object Level:</label>
+                                <div class="col-lg-7 va-bottom ib">
+                                    @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.ObjectLevelList)
+                                    @Html.ValidationMessageFor(m => m.ObjectLevel, "", new { @class = "text-danger" })
+                                    @*@Html.DropDownListFor(m => m.ObjectLevel, new SelectList(Model.ObjectLevelList, "Value", "Text"), new { @id = "ddlObjectLevel", @class = "form-control" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Parent Object:</label>
+                                <div class="col-lg-7">
+                                    <div id="DivParentObject">
+                                        @Html.Partial("~/Views/Shared/_Partial/_ddlWithClick.cshtml", Model.ParentObjectList)       
+                                        @Html.ValidationMessageFor(m => m.ParentObjectId, "", new { @class = "text-danger" })                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Name:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control ",  @maxlength = "50" })
+                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Description:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @maxlength = "500" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Caption:</label>
+                                <div class="col-lg-7">
+                                    @if(Model.ObjectId > 0)
+                                    {
+                                        @Html.TextBoxFor(m => m.Caption, new { @class = "form-control", @maxlength = "100", @readonly = true })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(m => m.Caption, new { @class = "form-control", @maxlength = "100" })
+                                    }
+                                    
+                                    @Html.ValidationMessageFor(m => m.Caption, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">URL:</label>
+                                <div class="col-lg-7">
+                                    @if(Model.ObjectId > 0)
+                                    {
+                                        @Html.TextBoxFor(m => m.URL, new { @class = "form-control", @maxlength = "150", @readonly = true })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(m => m.URL, new { @class = "form-control", @maxlength = "150" })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Object Order:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ObjectOrder, new { @class = "form-control", @maxlength = "3" })
+                                    @Html.ValidationMessageFor(m => m.ObjectOrder, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 control-label">Object Image:</label>
+                                <div class="col-lg-7">
+                                    @Html.TextBoxFor(m => m.ObjectImage, new { @class = "form-control", @maxlength = "100" })
+                                    @Html.ValidationMessageFor(m => m.ObjectImage, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Allow Write:</label>
+                                <div class="col-lg-7 va-bottom ib">
+                                    @Html.CheckBoxFor(m => m.AllowWrite, new { @class = "mt-sm" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Allow Delete:</label>
+                                <div class="col-lg-7 va-bottom ib">
+                                    @Html.CheckBoxFor(m => m.AllowDelete, new { @class = "mt-sm" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-lg-3 ib control-label">Is Active:</label>
+                                <div class="col-lg-7 va-bottom ib">
+                                    @Html.CheckBoxFor(m => m.IsActive, new { @class = "mt-sm" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+        <!-- Buttom Buttons -->
+        <div class="col-lg-12">
+            <p class="pull-right">
+                <a role="button" class="btn btn-primary btn-sm" href="~/ObjectSearch/Index">Cancel</a>
+                &nbsp;
+                @*<a role="button" class="btn btn-primary btn-sm" href="#">&nbsp;Save&nbsp;</a>*@
+                <button type="submit" class="btn btn-primary btn-sm">&nbsp;Save&nbsp;</button>
+            </p>
+        </div>
+    </div>
+    <script src="~/Scripts/AppJS/object/mepstemp.object.js"></script>
+   
+    
+    if (Model.ObjectLevel > 0)
+    {
+        <script>
+            $(document).ready(function () {
+                //1 incase of record updation
+                MEPSTEMP.UI.Object.initialisePage(1);
+            });
+        </script>
+    }
+    else
+    {
+        <script>
+            $(document).ready(function () {
+                //0 incase of record creation
+                MEPSTEMP.UI.Object.initialisePage(0);
+            });
+        </script>
+    }
+    }
+<!-- Content End -->

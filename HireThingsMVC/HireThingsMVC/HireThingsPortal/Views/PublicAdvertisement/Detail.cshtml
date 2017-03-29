@@ -1,0 +1,65 @@
+﻿@model ASOL.HireThings.Model.AdvertisementModel
+
+@{
+    ViewBag.Title = "Detail Advertisement";
+}
+
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutLevel2.cshtml";
+}
+
+<div id="advertisement" class="container">
+
+    
+    <div class="section-padding"></div>
+    <div class="section-header">
+        <h3>@Model.Name</h3>
+        <p>@Model.Description</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <table class="table table-responsive table-bordered table-striped">
+                  
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Category</b>
+                            </td>
+                            <td>
+                                @Model.CategoryName
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Charging Type</b>
+                            </td>
+                            <td>
+                                @Model.ChargingTypeName
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Charging Detail</b>
+                            </td>
+                            <td>
+                                @Model.ChargingDetail
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Special Terms</b>
+                            </td>
+                            <td>
+                                @Model.SpecialTerms
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ 
+</div>
